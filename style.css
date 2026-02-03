@@ -1,0 +1,362 @@
+/* ===================================================
+   1. ESTRUTURA E RESET
+   =================================================== */
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    margin: 0; 
+    background: #fff; 
+    color: #333; 
+    overflow-x: hidden; 
+    width: 100%;
+    padding: 0;
+}
+
+/* Centralização Real da Logo */
+header { 
+    padding: 15px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    background: #fff;
+}
+
+.logo-principal { 
+    width: 220px; 
+    height: auto;
+    display: block;
+}
+
+/* ===================================================
+   2. NAVEGAÇÃO E BUSCA
+   =================================================== */
+.faixa-azul {
+    background: #0033a0;
+    color: white;
+    padding: 12px 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.conteudo-faixa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faixa-azul p {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#inputBusca {
+    width: 180px;
+    padding: 6px 12px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Menu Lateral e Overlay */
+.menu-hamburguer { width: 30px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+.menu-hamburguer span { display: block; height: 3px; width: 100%; background-color: white; border-radius: 3px; }
+
+.menu-lateral {
+    height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0;
+    background-color: #fff; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+}
+.menu-lateral h3 { padding: 10px 32px; font-size: 18px; color: #0033a0; }
+.menu-lateral a { padding: 8px 32px; text-decoration: none; font-size: 16px; color: #333; display: block; transition: 0.3s; }
+.menu-lateral a:hover { background-color: #f1f1f1; }
+
+.btn-fechar { position: absolute; top: 10px; right: 25px; font-size: 36px !important; cursor: pointer; color: #333; text-decoration: none; }
+
+.overlay { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1999; }
+
+/* ===================================================
+   3. VITRINE E CARDS (ALINHAMENTO TOTAL)
+   =================================================== */
+.vitrine { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; 
+    padding: 12px; 
+}
+
+.card { 
+    border: 1px solid #f0f0f0; 
+    border-radius: 10px; 
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.foto-produto { width: 100%; height: 200px; }
+.foto-produto img { width: 100%; height: 100%; object-fit: cover; }
+
+.detalhes { 
+    padding: 12px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza tudo: título, preço e botão */
+}
+/* Centraliza tudo dentro do card do produto */
+.detalhes { 
+    padding: 12px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center;   /* Centraliza o texto */
+}
+
+.detalhes h3 {
+    width: 100%;
+    margin: 0 0 8px 0;
+}
+
+.btn-comprar {
+    width: 100%; /* Faz o botão ocupar a largura toda do card */
+    display: block;
+    box-sizing: border-box; /* Garante que o padding não jogue ele pro lado */
+    margin-top: 10px;
+}
+
+.detalhes h3 { margin: 0; font-size: 13px; color: #333; height: 35px; overflow: hidden; line-height: 1.2; }
+.detalhes p { font-weight: bold; color: #0033a0; font-size: 15px; margin: 8px 0; }
+
+/* O Famoso Botão que estava no canto */
+.btn-comprar {
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    padding: 12px 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%; /* Agora ele ocupa o card todo */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background 0.3s;
+}
+.btn-comprar:hover { background-color: #d4af37; }
+
+/* ===================================================
+   4. BANNERS E CATEGORIAS
+   =================================================== */
+.carousel-container { position: relative; width: 100%; overflow: hidden; }
+.carousel-slide { display: flex; transition: transform 0.5s ease-in-out; }
+.carousel-slide img { width: 100%; flex-shrink: 0; object-fit: cover; }
+
+.prev, .next {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 100;
+    background: rgba(255,255,255,0.8); color: #0033a0; border-radius: 50%;
+    width: 40px; height: 40px; border: none; cursor: pointer;
+}
+/* --- CENTRALIZAÇÃO E MANUTENÇÃO DAS BOLINHAS --- */
+.titulo-chamada {
+    text-align: center !important;
+    width: 100%;
+    margin: 40px 0 20px 0;
+    color: #0033a0;
+    font-weight: bold;
+}
+
+.secao-categorias { 
+    display: flex !important; 
+    justify-content: center !important; /* Centraliza no PC */
+    gap: 25px; 
+    padding: 20px; 
+    width: 100%;
+    overflow-x: auto; 
+    box-sizing: border-box;
+}
+
+.cat-item { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px; /* Garante espaço para a bolinha não esmagar */
+    cursor: pointer;
+    flex-shrink: 0;   /* Impede que o PC achate o círculo */
+}
+
+.foto-circulo { 
+    width: 100px !important;  /* Tamanho fixo da bolinha */
+    height: 100px !important; /* Tamanho fixo da bolinha */
+    border-radius: 50% !important; /* Garante que seja um círculo */
+    overflow: hidden; 
+    border: 2px solid #eee; 
+    margin-bottom: 10px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-circulo img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Faz a foto preencher o círculo sem distorcer */
+}
+
+/* Ajuste para Celular: Mantém o scroll lateral se houver muitas categorias */
+@media (max-width: 768px) {
+    .secao-categorias { 
+        justify-content: flex-start !important; 
+        padding-left: 20px;
+    }
+}
+/* ===================================================
+   5. BOTÕES FLUTUANTES (FIXO E CLICÁVEL)
+   =================================================== */
+.whatsapp-float, #carrinho-flutuante {
+    position: fixed !important;
+    right: 20px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 9999 !important; /* Força ficar na frente de tudo */
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    text-decoration: none !important;
+}
+
+.whatsapp-float { bottom: 20px !important; width: 60px !important; height: 60px !important; background-color: #25d366 !important; }
+.whatsapp-float img { width: 35px; }
+
+#carrinho-flutuante { 
+    bottom: 90px !important; 
+    width: 60px !important; 
+    height: 60px !important; 
+    background-color: #0033a0 !important; 
+    color: white !important; 
+    font-size: 24px !important; 
+}
+
+#contagem-carrinho {
+    position: absolute; top: 5px; right: 5px; background: #eaff00;
+    color: #000; border-radius: 50%; padding: 2px 7px; font-size: 11px;
+    font-weight: bold; border: 1px solid #0033a0;
+}
+
+/* ===================================================
+   6. MODAL, QUEM SOMOS E RODAPÉ
+   =================================================== */
+.modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-conteudo { background: #fff; margin: 15% auto; padding: 20px; width: 85%; max-width: 400px; border-radius: 10px; }
+
+/* SEÇÃO QUEM SOMOS */
+.quem-somos-footer { background: linear-gradient(to bottom, #ffffff, #f4f7ff); padding: 60px 20px; text-align: center; border-top: 1px solid #eee; }
+.container-quem-somos { max-width: 750px; margin: 0 auto; }
+.container-quem-somos h2 { color: #0033a0; font-size: 28px; margin-bottom: 5px; }
+.linha-decorativa { width: 50px; height: 4px; background-color: #d4af37; margin: 10px auto 25px; border-radius: 2px; }
+.container-quem-somos p { font-size: 16px; line-height: 1.8; color: #444; }
+
+/* RODAPÉ */
+.rodape-final { background-color: #0033a0; color: white; padding: 40px 20px; text-align: center; }
+.container-rodape { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; max-width: 1200px; margin: 0 auto; }
+/* --- FIX DO BOTÃO INSTAGRAM --- */
+.social-links a {
+    color: white !important; /* Ou a cor que você usava */
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #d4af37 !important; /* Cor dourada ao passar o mouse */
+    /* --- ESTILO DA LOCALIZAÇÃO (DADOS REAIS) --- */
+.localizacao-loja {
+    margin-top: 40px;
+    padding: 25px;
+    background: #fff; /* Fundo branco para destacar do azul clarinho */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: inline-block;
+    width: 90%;
+    max-width: 500px;
+}
+
+.linha-decorativa-pequena {
+    width: 30px;
+    height: 3px;
+    background-color: #d4af37;
+    margin: 0 auto 15px;
+}
+
+.localizacao-loja p {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    color: #333 !important;
+    margin-bottom: 20px !important;
+}
+
+.btn-mapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: #0033a0;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-mapa:hover {
+    background-color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Ajuste para o ícone do Instagram não sumir no rodapé */
+.social-links a i {
+    font-size: 24px;
+    color: white !important;
+}
+}
+/* ===================================================
+   7. RESPONSIVIDADE (MOBILE FIRST)
+   =================================================== */
+@media (max-width: 768px) {
+    .logo-principal { width: 160px !important; }
+    #inputBusca { width: 110px !important; }
+    .faixa-azul p { font-size: 9px !important; }
+    
+    .vitrine { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 8px; }
+    .foto-produto { height: 160px; }
+    
+    .whatsapp-float, #carrinho-flutuante { width: 50px !important; height: 50px !important; right: 15px !important; }
+    #carrinho-flutuante { bottom: 80px !important; }
+}
+
+@media (min-width: 769px) {
+    .vitrine { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .foto-produto { height: 250px; }
+}

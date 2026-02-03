@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listas de Casamento | Nevinha Enxovais</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="casamento.css">
+</head>
+<body>
+    <header>
+        <img src="https://i.postimg.cc/B607Fvtv/Nevinha-(2).png" alt="Logo" class="logo-principal">
+    </header>
+
+    <div class="faixa-azul">
+        <div class="conteudo-faixa"><p>Selecione a lista desejada para presentear</p></div>
+    </div>
+
+    <main>
+        <h1 class="titulo-sessao">Listas de Presentes</h1>
+        <section class="grade-noivos" id="lista-noivos"></section>
+
+    <script src="casamento.js"></script>
+    <script>
+        // ISSO AQUI FORÇA O CARREGAMENTO
+        function iniciar() {
+            if (typeof carregarListasDeNoivas === 'function') {
+                carregarListasDeNoivas('lista-noivos');
+            } else {
+                setTimeout(iniciar, 500); // Tenta de novo se o JS não carregou ainda
+            }
+        }
+        iniciar();
+    </script>
+    <a href="index.html" style="
+    position: fixed;
+    bottom: 340px; /* Ajuste essa altura para ele ficar acima dos outros */
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #003399;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-family: sans-serif;
+    transition: transform 0.2s;
+">
+    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+    </svg>
+    <span style="font-size: 8px; font-weight: bold; margin-top: 2px;">INÍCIO</span>
+</a>
+</body>
+</html>

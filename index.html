@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nevinha Enxovais | Catálogo</title>
+    
+    <link rel="icon" href="https://i.postimg.cc/L8v9nDn7/Design-sem-nome-(7).png" type="image/png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <img src="https://i.postimg.cc/B607Fvtv/Nevinha-(2).png" alt="Logo Nevinha Enxovais" class="logo-principal">
+    </header>
+
+    <div class="faixa-azul">
+        <div class="conteudo-faixa">
+            <div class="menu-hamburguer" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <p>O melhor em Cama, Mesa e Banho para o seu lar ou negócio</p>
+            
+            <div class="container-busca">
+                <input type="text" id="inputBusca" placeholder="Pesquisar..." onkeyup="buscarProduto()">
+            </div>
+        </div>
+    </div>
+
+    <div id="menuLateral" class="menu-lateral">
+        <a href="javascript:void(0)" class="btn-fechar" onclick="toggleMenu()">&times;</a>
+        
+        <div class="conteudo-menu">
+            <h3>Categorias</h3>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('tudo')">Ver Tudo</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('solteiro')">Solteiro</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('casal')">Casal</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('queen')">Queen</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('king')">King</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('infantil')">Infantil</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('banho')">Banho</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('mesa')">Mesa</a>
+            <a href="javascript:void(0)" onclick="filtrarPeloMenu('sala')">Sala</a>
+            <a href="casamento.html">Lista de Presentes</a>
+
+            <hr style="margin: 15px 32px; border: 0; border-top: 1px solid #eee;">
+
+            <h3>Sobre a Loja</h3>
+            <a href="#quem-somos" onclick="toggleMenu()">Quem Somos</a>
+            <a href="#rodape" onclick="toggleMenu()">Horários e Redes</a>
+
+            <hr style="margin: 15px 32px; border: 0; border-top: 1px solid #eee;">
+
+            <h3>Contato</h3>
+            <p style="padding: 10px 32px; color: #666; font-size: 14px;">📲 (81) 9 9898-4913</p>
+
+            <h3>Localização</h3>
+            <p style="padding: 10px 32px; color: #666; font-size: 14px;">📍 Av. Lourival José da Silva, Nº 483, Petrópolis, Caruaru-PE</p>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="https://i.postimg.cc/9QF8XFJG/abnner2.png" alt="Promoção 1">
+            <img src="https://i.postimg.cc/3xJSrJnf/banner1.png" alt="Promoção 2">
+            <img src="https://i.postimg.cc/zGXtDX00/banner3.png" alt="Promoção 3">
+        </div>
+        <button class="prev" onclick="moveSlideManual(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlideManual(1)">&#10095;</button>
+    </div>
+    
+
+    <h2 class="titulo-chamada">O que você está procurando hoje?</h2>
+
+    <div class="secao-categorias">
+    <div class="cat-item btn-filtro ativo" data-filter="tudo">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/wj8bPNBF/Design-sem-nome-2-removebg-preview.png"></div>
+        <span>VER TUDO</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="solteiro">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/KzjDHchm/catalogo-branco-pdf-image-014.png"></div>
+        <span>SOLTEIRO</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="casal">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/mktz4hmg/catalogo-branco-pdf-image-061.jpg"></div>
+        <span>CASAL</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="queen">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/mktz4hmg/catalogo-branco-pdf-image-061.jpg"></div>
+        <span>QUEEN</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="king">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/mktz4hmg/catalogo-branco-pdf-image-061.jpg"></div>
+        <span>KING</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="infantil">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/KzjDHchm/catalogo-branco-pdf-image-014.png"></div>
+        <span>INFANTIL</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="banho">
+        <div class="foto-circulo"><img src="https://i.postimg.cc/GpyXLhSz/catalogo-branco-pdf-image-114.jpg"></div>
+        <span>BANHO</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="mesa">
+        <div class="foto-circulo"><img src="https://blog.uptownbarra.com.br/wp-content/uploads/2025/04/mesa-posta-com-pratos-e-utensilios.webp"></div>
+        <span>MESA</span>
+    </div>
+    <div class="cat-item btn-filtro" data-filter="sala">
+        <div class="foto-circulo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsO8JtBBZ7M58yhX16qQG81BuV9qx0h9QOTQ&s"></div>
+        <span>SALA</span>
+    </div>
+</div>
+
+    <main class="vitrine"></main>
+
+    <section id="quem-somos" class="quem-somos-footer">
+        <div class="container-quem-somos">
+            <h2>Quem Somos?</h2>
+            <div class="linha-decorativa"></div>
+            <p>
+                Nevinha Enxovais nasceu em Caruaru com o propósito de levar conforto e beleza para o seu lar. 
+                Especialistas em cama, mesa e banho, selecionamos cada peça com cuidado para garantir 
+                qualidade e o melhor custo-benefício.
+            </p>
+        </div>
+        <div class="localizacao-loja">
+    <div class="linha-decorativa-pequena"></div>
+    <p><strong>Nossa Loja Física:</strong><br>
+    Av. Lourival José da Silva, Nº 483<br>
+    Petrópolis (Feira da Moda) - Caruaru-PE</p>
+    
+    <a href="https://www.google.com/maps/search/?api=1&query=Nevinha+Cama+Mesa+e+Banho+Caruaru" target="_blank" class="btn-mapa">
+        <i class="fas fa-map-marker-alt"></i> Abrir no Google Maps
+    </a>
+</div>
+    </section>
+    
+
+    <footer id="rodape" class="rodape-final">
+        <div class="container-rodape">
+            <div class="coluna-rodape">
+                <h3>Horário de Funcionamento</h3>
+                <p>Segunda à Quarta e sextas: 07:30 às 17:30</p>
+                <p>Quinta-feira: 07:30 às 18:00</p>
+                <p>Sábado: 07:30 às 13:00</p>
+            </div>
+
+            <div class="coluna-rodape">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/nevinhacamamesaebanhoe/" target="_blank">Instagram</a>
+                </div>
+            </div>
+
+            <div class="coluna-rodape">
+                <h3>Pagamento</h3>
+                <p>💳 Aceitamos Cartões em até 10x, Pix e Espécie</p>
+            </div>
+        </div>
+        <div class="direitos">
+            <p>&copy; 2026 Nevinha Enxovais - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/5581998984913" target="_blank" class="whatsapp-float">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    
+    <div id="carrinho-flutuante" onclick="abrirModal()">
+        <span>🛒</span>
+        <span id="contagem-carrinho">0</span>
+    </div>
+
+    <div id="modal-carrinho" class="modal">
+    <div class="modal-conteudo">
+        <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+        <h2 style="color: #0033a0; margin-bottom: 10px;">Seu Carrinho</h2>
+        
+        <div id="itens-carrinho"></div>
+        
+        <p style="margin-top: 20px; font-size: 18px;"><strong>Total: R$ <span id="valor-total">0,00</span></strong></p>
+        
+        <button class="btn-finalizar" onclick="enviarPedido()" style="background-color: #25d366; color: white; border: none; padding: 15px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">
+            CONTINUAR PARA PAGAMENTO
+        </button>
+
+        <button onclick="limparCarrinho()" style="background: none; color: #ff4d4d; border: none; padding: 10px; cursor: pointer; margin-top: 10px; font-size: 12px;">
+            🗑️ Esvaziar Carrinho
+        </button>
+    </div>
+</div>
+
+    <script src="produtos.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

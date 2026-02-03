@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.postimg.cc/L8v9nDn7/Design-sem-nome-(7).png" type="image/png">
+    <title>Crédito Noiva | Nevinha Enxovais</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #1976d2; margin-bottom: 20px; text-transform: uppercase; font-size: 18px; }
+        label { display: block; text-align: left; font-weight: bold; margin-bottom: 8px; color: #555; font-size: 12px; }
+        select { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; background: #fff; }
+        .btn-calc { width: 100%; padding: 15px; background: #1976d2; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .btn-calc:hover { background: #1565c0; }
+        .btn-calc:disabled { background: #ccc; }
+        .resultado { margin-top: 25px; padding: 20px; background: #fff9c4; border-radius: 10px; border: 2px solid #fbc02d; display: none; }
+        .total-vendas { font-size: 14px; color: #616161; }
+        .valor-brinde { font-size: 32px; color: #d32f2f; font-weight: bold; display: block; margin-top: 5px; }
+        .legenda { font-size: 11px; color: #757575; margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🎁 Crédito da Noiva</h2>
+    
+    <label>SELECIONE A LISTA</label>
+    <select id="selectListas">
+        <option>Carregando listas...</option>
+    </select>
+
+    <button class="btn-calc" id="btnAcao" onclick="calcularBrinde()">CONSULTAR VALOR</button>
+
+    <div id="resultado" class="resultado">
+        <span class="total-vendas">Total Vendido: <b id="resTotal">R$ 0,00</b></span>
+        <hr style="border: 0; border-top: 1px solid #fbc02d; margin: 15px 0;">
+        <span style="font-weight: bold; color: #555;">CRÉDITO DISPONÍVEL (5%)</span>
+        <span id="resBrinde" class="valor-brinde">R$ 0,00</span>
+        <span class="legenda">*Valor calculado sobre itens vendidos</span>
+    </div>
+</div>
+
+<script>
+    const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbyk7IuILoIC3AgAfv5CHzkuzx1a4__LwvpVnymd7AEOWEcMKQrk42As5RMYhCZ-VEis/exec';
+
+    window.onload = atualizarSelect;
+
+    async function atualizarSelect() {
+        const select = document.getElementById('selectListas');
+        try {
+            const res = await fetch(`${URL_SCRIPT}?acao=listarAbas`);
+            const listas = await res.json();
+            select.innerHTML = '<option value="">-- Selecione a Lista --</option>';
+            listas.forEach(l => {
+                const opt = document.createElement('option');
+                opt.value = l.id;
+                opt.innerText = `${l.id} - ${l.noiva}`;
+                select.appendChild(opt);
+            });
+        } catch (e) { select.innerHTML = '<option>Erro ao carregar</option>'; }
+    }
+
+    async function calcularBrinde() {
+        const id = document.getElementById('selectListas').value;
+        if(!id) return alert("Por favor, selecione uma lista.");
+
+        const btn = document.getElementById('btnAcao');
+        const resBox = document.getElementById('resultado');
+        
+        btn.innerText = "Buscando...";
+        btn.disabled = true;
+        resBox.style.display = "none";
+
+        try {
+            const res = await fetch(`${URL_SCRIPT}?acao=fechamento&lista=${id}`);
+            const dados = await res.json();
+            
+            document.getElementById('resTotal').innerText = `R$ ${dados.total.replace('.', ',')}`;
+            document.getElementById('resBrinde').innerText = `R$ ${dados.brinde.replace('.', ',')}`;
+            resBox.style.display = "block";
+        } catch (e) { 
+            alert("Erro ao conectar com a planilha."); 
+        } finally {
+            btn.innerText = "CONSULTAR VALOR";
+            btn.disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>

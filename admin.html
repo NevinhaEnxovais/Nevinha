@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Abertura de Lista</title>
+    <style>
+        :root { --primary: #1976d2; --success: #2e7d32; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 40px 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 20px; font-size: 20px; text-transform: uppercase; }
+        label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: bold; color: #555; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 15px; }
+        button { width: 100%; padding: 15px; background: var(--success); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        #msg { margin-top: 20px; text-align: center; font-weight: bold; font-size: 14px; }
+        .aviso { background: #fff3e0; color: #e65100; padding: 10px; border-radius: 6px; font-size: 12px; margin-bottom: 20px; border-left: 4px solid #ff9800; }
+        .loading-id { font-size: 11px; color: #1976d2; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🆕 Criar Ficha de Lista</h2>
+    
+    <div class="aviso">
+        <b>Dica:</b> O ID é sugerido automaticamente. Preencha o contato para facilitar a comunicação.
+    </div>
+
+    <label>NOME DA NOIVA / ANIVERSARIANTE</label>
+    <input type="text" id="noiva" placeholder="Nome completo">
+
+    <label>NOME DO NOIVO (OPCIONAL)</label>
+    <input type="text" id="noivo" placeholder="Nome completo">
+
+    <label>DATA DO EVENTO</label>
+    <input type="date" id="dataEvento">
+
+    <label>CONTATO (WHATSAPP)</label>
+    <input type="text" id="contato" placeholder="(00) 00000-0000">
+
+    <label>NÚMERO DO ID <span id="loadStatus" class="loading-id">(Buscando...)</span></label>
+    <input type="text" id="nomeAba" placeholder="Ex: 070">
+
+    <button id="btnCriar" onclick="gerarLista()">CRIAR LISTA NA PLANILHA</button>
+
+    <div id="msg"></div>
+</div>
+
+<script>
+    const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbyk7IuILoIC3AgAfv5CHzkuzx1a4__LwvpVnymd7AEOWEcMKQrk42As5RMYhCZ-VEis/exec';
+
+    window.onload = function() { buscarProximoID(); };
+
+    async function buscarProximoID() {
+        const status = document.getElementById('loadStatus');
+        try {
+            const res = await fetch(`${URL_SCRIPT}?acao=proximoID`);
+            const proximo = await res.text();
+            document.getElementById('nomeAba').value = proximo;
+            status.innerText = "(Sugestão)";
+            status.style.color = "green";
+        } catch (e) { status.innerText = "(Erro)"; }
+    }
+
+    async function gerarLista() {
+        const noiva = document.getElementById('noiva').value.toUpperCase();
+        const noivo = document.getElementById('noivo').value.toUpperCase();
+        const dataInput = document.getElementById('dataEvento').value;
+        const aba = document.getElementById('nomeAba').value.trim();
+        
+        // --- PEGA O VALOR DO NOVO CAMPO ---
+        const contato = document.getElementById('contato').value; 
+        
+        const msg = document.getElementById('msg');
+        const btn = document.getElementById('btnCriar');
+
+        if(!noiva || !aba || !dataInput) {
+            alert("Preencha Noiva, Data e ID!");
+            return;
+        }
+
+        const [ano, mes, dia] = dataInput.split('-');
+        const dataFormatada = `${dia}/${mes}/${ano}`;
+
+        btn.disabled = true;
+        msg.style.color = "orange";
+        msg.innerText = "⏳ Criando...";
+
+        // --- ADICIONEI O &contato NA URL ABAIXO ---
+        const url = `${URL_SCRIPT}?acao=criarLista&nomeAba=${encodeURIComponent(aba)}&noiva=${encodeURIComponent(noiva)}&noivo=${encodeURIComponent(noivo)}&data=${encodeURIComponent(dataFormatada)}&contato=${encodeURIComponent(contato)}`;
+
+        try {
+            const response = await fetch(url);
+            const resultado = await response.text();
+
+            if (resultado.includes("Sucesso")) {
+                msg.style.color = "green";
+                msg.innerText = "✅ " + resultado;
+                // Limpa tudo menos o ID (que será atualizado)
+                document.getElementById('noiva').value = "";
+                document.getElementById('noivo').value = "";
+                document.getElementById('dataEvento').value = "";
+                document.getElementById('contato').value = ""; 
+                buscarProximoID();
+            } else {
+                msg.style.color = "red";
+                msg.innerText = "❌ " + resultado;
+            }
+        } catch (error) {
+            msg.innerText = "❌ Erro de conexão.";
+        } finally {
+            btn.disabled = false;
+        }
+    }
+</script>
+
+
+</body>
+</html>

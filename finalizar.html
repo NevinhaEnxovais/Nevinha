@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.postimg.cc/L8v9nDn7/Design-sem-nome-(7).png" type="image/png">
+    <title>Finalizar Pedido | Nevinha Enxovais</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .checkout-container { max-width: 600px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: 'Montserrat', sans-serif; }
+        .campo { margin-bottom: 15px; text-align: left; }
+        .campo label { display: block; font-weight: bold; color: #0033a0; margin-bottom: 5px; font-size: 14px; }
+        .campo input, .campo select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        .resumo-pedido { background: #f9f9f9; padding: 15px; border-radius: 5px; margin-bottom: 20px; border-left: 5px solid #0033a0; }
+        .btn-enviar { background: #25d366; color: white; border: none; padding: 18px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 18px; margin-top: 10px; }
+        .oculto { display: none; }
+        .desconto-aviso { color: #28a745; font-weight: bold; font-size: 14px; margin-top: 5px; }
+        .btn-voltar { display: inline-block; margin-top: 20px; color: #0033a0; text-decoration: none; font-weight: bold; font-size: 14px; }
+    </style>
+</head>
+<body style="background-color: #f0f2f5; text-align: center;">
+
+    <header style="background: white; padding: 10px; margin-bottom: 20px;">
+        <img src="https://i.postimg.cc/B607Fvtv/Nevinha-(2).png" alt="Logo" style="max-width: 150px;">
+    </header>
+
+    <div class="checkout-container">
+        <h2 style="color: #0033a0;">Finalizar seu Pedido</h2>
+        
+        <div class="resumo-pedido">
+            <h4 style="margin-top: 0;">Itens Escolhidos:</h4>
+            <div id="lista-checkout" style="font-size: 14px; line-height: 1.6;"></div>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+            <p id="subtotal-display" style="margin: 5px 0;">Subtotal: R$ 0,00</p>
+            <p id="desconto-display" class="desconto-aviso"></p>
+            <h3 id="total-final-display" style="margin: 10px 0; color: #0033a0;">Total: R$ 0,00</h3>
+        </div>
+
+        <div class="campo">
+            <label>Qual seu nome?</label>
+            <input type="text" id="check-nome" placeholder="Digite seu nome completo">
+        </div>
+
+        <div class="campo">
+            <label>Forma de Pagamento:</label>
+            <select id="check-pagamento" onchange="calcularTotalFinal()">
+                <option value="pix">Pix (10% de Desconto)</option>
+                <option value="dinheiro">Dinheiro (10% de Desconto)</option>
+                <option value="cartao-debito">Cartão de Débito</option>
+                <option value="cartao-credito">Cartão de Crédito (Até 10x)</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Como deseja receber?</label>
+            <select id="check-metodo" onchange="toggleEntrega()">
+                <option value="retirada">Vou retirar na loja</option>
+                <option value="entrega">Desejo entrega (Caruaru)</option>
+            </select>
+        </div>
+
+        <div id="campos-entrega" class="oculto">
+            <div class="campo">
+                <label>Endereço de Entrega:</label>
+                <input type="text" id="check-endereco" placeholder="Rua, número e bairro">
+            </div>
+            <div class="campo">
+                <label>Ponto de Referência:</label>
+                <input type="text" id="check-referencia" placeholder="Ex: Próximo ao mercado X">
+            </div>
+        </div>
+
+        <div id="campos-retirada">
+            <div class="campo">
+                <label>Quem vai retirar o pedido?</label>
+                <input type="text" id="check-quem-retira" placeholder="Nome da pessoa que vem buscar">
+            </div>
+        </div>
+
+        <div id="campo-troco" class="campo oculto">
+            <label>Precisa de troco para quanto?</label>
+            <input type="text" id="check-troco" placeholder="Ex: 100,00">
+        </div>
+
+        <button class="btn-enviar" onclick="enviarWhatsAppFinal()">ENVIAR PEDIDO PELO WHATSAPP</button>
+        
+        <a href="index.html" class="btn-voltar">← Voltar e editar carrinho</a>
+    </div>
+
+    <script>
+        
+        let dadosCarrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        let subtotal = parseFloat(localStorage.getItem('totalCarrinho')) || 0;
+
+        function carregarResumo() {
+            const lista = document.getElementById('lista-checkout');
+            if(dadosCarrinho.length === 0) {
+                lista.innerHTML = "Seu carrinho está vazio.";
+                return;
+            }
+            lista.innerHTML = dadosCarrinho.map(i => `<div>• ${i.quantidade}x ${i.nome} - R$ ${(i.preco * i.quantidade).toFixed(2)}</div>`).join('');
+            calcularTotalFinal();
+        }
+
+        function calcularTotalFinal() {
+            const pagamento = document.getElementById('check-pagamento').value;
+            let totalFinal = subtotal;
+            let descTxt = "";
+
+            
+            if (pagamento === 'pix' || pagamento === 'dinheiro') {
+                totalFinal = subtotal * 0.90;
+                descTxt = "Desconto de 10% aplicado!";
+                if(pagamento === 'dinheiro') document.getElementById('campo-troco').classList.remove('oculto');
+                else document.getElementById('campo-troco').classList.add('oculto');
+            } else {
+                document.getElementById('campo-troco').classList.add('oculto');
+            }
+
+            document.getElementById('subtotal-display').innerText = `Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('desconto-display').innerText = descTxt;
+            document.getElementById('total-final-display').innerText = `Total: R$ ${totalFinal.toFixed(2).replace('.', ',')}`;
+            
+            return totalFinal;
+        }
+
+        function toggleEntrega() {
+            const metodo = document.getElementById('check-metodo').value;
+            document.getElementById('campos-entrega').classList.toggle('oculto', metodo !== 'entrega');
+            document.getElementById('campos-retirada').classList.toggle('oculto', metodo !== 'retirada');
+        }
+
+        function enviarWhatsAppFinal() {
+            const nome = document.getElementById('check-nome').value;
+            if(!nome) return alert("Por favor, preencha seu nome.");
+
+            const pagamento = document.getElementById('check-pagamento').value;
+            const metodo = document.getElementById('check-metodo').value;
+            const valorComDesconto = calcularTotalFinal();
+            
+            const endereco = document.getElementById('check-endereco').value || "Não informado";
+            const referencia = document.getElementById('check-referencia').value || "Não informado";
+            const quemRetira = document.getElementById('check-quem-retira').value || "Não informado";
+
+            
+            let mensagem = `*NOVO PEDIDO - NEVINHA ENXOVAIS*\n\n`;
+            mensagem += `*Cliente:* ${nome}\n`;
+            
+            if(metodo === 'entrega') {
+                mensagem += `*Endereço:* ${endereco}\n`;
+                mensagem += `*Ref:* ${referencia}\n`;
+            } else {
+                mensagem += `*Tipo:* RETIRADA NA LOJA\n`;
+                mensagem += `*Quem retira:* ${quemRetira}\n`;
+            }
+            
+            mensagem += `*Forma de Pagto:* ${pagamento.toUpperCase()}\n`;
+            if(pagamento === 'dinheiro' && document.getElementById('check-troco').value) {
+                mensagem += `*Troco para:* R$ ${document.getElementById('check-troco').value}\n`;
+            }
+
+            mensagem += `\n--------------------------\n`;
+            mensagem += `*ITENS DO PEDIDO:*\n`;
+            dadosCarrinho.forEach(i => {
+                mensagem += `• ${i.quantidade}x ${i.nome}\n`;
+            });
+            mensagem += `--------------------------\n\n`;
+
+            mensagem += `*VALOR TOTAL: R$ ${subtotal.toFixed(2).replace('.', ',')}*\n`;
+            
+            if(pagamento === 'pix' || pagamento === 'dinheiro') {
+                mensagem += `*VALOR COM DESCONTO DE 10%: R$ ${valorComDesconto.toFixed(2).replace('.', ',')}*`;
+            }
+
+            window.open(`https://wa.me/5581998984913?text=${encodeURIComponent(mensagem)}`, "_blank");
+        }
+
+        window.onload = carregarResumo;
+    </script>
+    
+</body>
+</html>
