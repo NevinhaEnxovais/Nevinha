@@ -76,9 +76,10 @@
         const noivo = document.getElementById('noivo').value.toUpperCase();
         const dataInput = document.getElementById('dataEvento').value;
         const aba = document.getElementById('nomeAba').value.trim();
-        
-        // --- PEGA O VALOR DO NOVO CAMPO ---
         const contato = document.getElementById('contato').value; 
+        
+        // --- NOVIDADE AQUI: PEGA O TAMANHO DA CAMA ESCOLHIDO ---
+        const baseCama = document.getElementById('baseMestra').value;
         
         const msg = document.getElementById('msg');
         const btn = document.getElementById('btnCriar');
@@ -95,8 +96,8 @@
         msg.style.color = "orange";
         msg.innerText = "⏳ Criando...";
 
-        // --- ADICIONEI O &contato NA URL ABAIXO ---
-        const url = `${URL_SCRIPT}?acao=criarLista&nomeAba=${encodeURIComponent(aba)}&noiva=${encodeURIComponent(noiva)}&noivo=${encodeURIComponent(noivo)}&data=${encodeURIComponent(dataFormatada)}&contato=${encodeURIComponent(contato)}`;
+        // --- URL ATUALIZADA COM &base= ---
+        const url = `${URL_SCRIPT}?acao=criarLista&base=${baseCama}&nomeAba=${encodeURIComponent(aba)}&noiva=${encodeURIComponent(noiva)}&noivo=${encodeURIComponent(noivo)}&data=${encodeURIComponent(dataFormatada)}&contato=${encodeURIComponent(contato)}`;
 
         try {
             const response = await fetch(url);
@@ -105,7 +106,6 @@
             if (resultado.includes("Sucesso")) {
                 msg.style.color = "green";
                 msg.innerText = "✅ " + resultado;
-                // Limpa tudo menos o ID (que será atualizado)
                 document.getElementById('noiva').value = "";
                 document.getElementById('noivo').value = "";
                 document.getElementById('dataEvento').value = "";
