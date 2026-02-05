@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Abertura de Lista</title>
     <link rel="icon" href="https://i.postimg.cc/PrDNFFJ0/Design_sem_nome_(8).png">
-<link rel="apple-touch-icon" href="https://i.postimg.cc/PrDNFFJ0/Design_sem_nome_(8).png">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/PrDNFFJ0/Design_sem_nome_(8).png">
     <style>
         :root { --primary: #1976d2; --success: #2e7d32; --bg: #f8f9fa; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 40px 20px; }
@@ -26,10 +26,10 @@
     <h2>🆕 Criar Ficha de Lista</h2>
     <label>TAMANHO DA CAMA </label>
     <select id="baseMestra" style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc;">
-    <option value="BASE-MESTRA">CASAL (PADRÃO)</option>
-    <option value="BASE_SOLTEIRO">SOLTEIRO</option>
-    <option value="BASE_QUEEN">QUEEN</option>
-    <option value="BASE_KING">KING</option>
+        <option value="BASE-MESTRA">CASAL (PADRÃO)</option>
+        <option value="BASE_SOLTEIRO">SOLTEIRO</option>
+        <option value="BASE_QUEEN">QUEEN</option>
+        <option value="BASE_KING">KING</option>
     </select>
     <div class="aviso">
         <b>Dica:</b> O ID é sugerido automaticamente. Preencha o contato para facilitar a comunicação.
@@ -56,6 +56,7 @@
 </div>
 
 <script>
+    // CERTIFIQUE-SE DE QUE ESTE LINK É O DA ÚLTIMA IMPLANTAÇÃO
     const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbyk7IuILoIC3AgAfv5CHzkuzx1a4__LwvpVnymd7AEOWEcMKQrk42As5RMYhCZ-VEis/exec';
 
     window.onload = function() { buscarProximoID(); };
@@ -63,7 +64,7 @@
     async function buscarProximoID() {
         const status = document.getElementById('loadStatus');
         try {
-            const res = await fetch(`${URL_SCRIPT}?acao=proximoID`);
+            const res = await fetch(`${URL_SCRIPT}?acao=proximoID&t=${Date.now()}`);
             const proximo = await res.text();
             document.getElementById('nomeAba').value = proximo;
             status.innerText = "(Sugestão)";
@@ -78,8 +79,8 @@
         const aba = document.getElementById('nomeAba').value.trim();
         const contato = document.getElementById('contato').value; 
         
-        // --- NOVIDADE AQUI: PEGA O TAMANHO DA CAMA ESCOLHIDO ---
-        const baseCama = document.getElementById('baseMestra').value;
+        // Pega o valor e garante que esteja em maiúsculo para bater com a planilha
+        const baseCama = document.getElementById('baseMestra').value.trim().toUpperCase();
         
         const msg = document.getElementById('msg');
         const btn = document.getElementById('btnCriar');
@@ -96,8 +97,8 @@
         msg.style.color = "orange";
         msg.innerText = "⏳ Criando...";
 
-        // --- URL ATUALIZADA COM &base= ---
-        const url = `${URL_SCRIPT}?acao=criarLista&base=${baseCama}&nomeAba=${encodeURIComponent(aba)}&noiva=${encodeURIComponent(noiva)}&noivo=${encodeURIComponent(noivo)}&data=${encodeURIComponent(dataFormatada)}&contato=${encodeURIComponent(contato)}`;
+        // Adicionado &t=${Date.now()} para evitar cache e forçar o Google a ler a planilha atualizada
+        const url = `${URL_SCRIPT}?acao=criarLista&base=${baseCama}&nomeAba=${encodeURIComponent(aba)}&noiva=${encodeURIComponent(noiva)}&noivo=${encodeURIComponent(noivo)}&data=${encodeURIComponent(dataFormatada)}&contato=${encodeURIComponent(contato)}&t=${Date.now()}`;
 
         try {
             const response = await fetch(url);
@@ -122,7 +123,6 @@
         }
     }
 </script>
-
 
 </body>
 </html>
