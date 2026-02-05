@@ -20,6 +20,13 @@ async function carregarListasDeNoivas(containerId) {
             // Pega nomes da Coluna H (índice 7) como na sua planilha
             let rawNoiva = dados[0] && dados[0][7] ? dados[0][7] : lista.noiva;
             let rawNoivo = dados[1] && dados[1][7] ? dados[1][7] : "";
+            
+            // NOVIDADE: Pega a foto da célula H5 (índice 4 da linha 5 no script ou busca direta se disponível)
+            // Se o objeto 'lista' já trouxer a foto do listarAbas atualizado, usamos ela.
+            // Se não, definimos uma imagem padrão (Sua Logo).
+            let fotoNoivos = lista.foto && lista.foto.includes('http') 
+                             ? lista.foto 
+                             : "https://i.postimg.cc/B607Fvtv/Nevinha-(2).png";
 
             let nPuro = rawNoiva.replace(/Noiva:\s*/i, "").trim();
             let oPuro = rawNoivo.replace(/Noivo:\s*/i, "").trim();
@@ -28,7 +35,7 @@ async function carregarListasDeNoivas(containerId) {
 
             container.innerHTML += `
                 <div class="card-casal" onclick="window.location.href='vitrine-noiva.html?id=${lista.id}'" style="cursor:pointer;">
-                    <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Noivos">
+                    <img src="${fotoNoivos}" alt="Noivos" style="width:100%; height:200px; object-fit:cover;">
                     <div style="padding: 15px; text-align: center;">
                         <h3 style="margin:0; color:#333; font-family: sans-serif;">${nomeCasal.toUpperCase()}</h3>
                         <p style="color:#666; font-size:14px; margin: 10px 0;">Data: ${lista.data || '15/02/2026'}</p>
@@ -44,7 +51,6 @@ async function carregarListasDeNoivas(containerId) {
 }
 
 // --- FUNÇÃO PARA A VITRINE (vitrine-noiva.html) ---
-// --- FUNÇÃO PARA A VITRINE (BUSCA NOME DOS NOIVOS + PRODUTOS) ---
 async function carregarProdutosDaNoiva(containerId, tituloId) {
     const params = new URLSearchParams(window.location.search);
     const idLista = params.get('id');
@@ -57,15 +63,11 @@ async function carregarProdutosDaNoiva(containerId, tituloId) {
         const res = await fetch(`${URL_SCRIPT}?acao=buscar&lista=${idLista}`);
         const dados = await res.json();
         
-        // 1. EXTRAÇÃO DOS NOMES (Coluna H - índice 7)
-        // Pega o nome da Noiva na linha 1 e do Noivo na linha 2 da Coluna H
         let nNoiva = dados[0] && dados[0][7] ? dados[0][7].replace(/Noiva:\s*/i, "").trim() : "";
         let nNoivo = dados[1] && dados[1][7] ? dados[1][7].replace(/Noivo:\s*/i, "").trim() : "";
         
-        // Monta o nome do casal (ou apenas um nome se for aniversário)
         const nomeParaExibir = nNoivo ? `${nNoiva} & ${nNoivo}` : nNoiva;
         
-        // 2. ATUALIZA O TÍTULO DA PÁGINA
         if (campoTitulo && nomeParaExibir) {
             campoTitulo.innerText = nomeParaExibir.toUpperCase();
         } else if (campoTitulo) {
@@ -74,17 +76,13 @@ async function carregarProdutosDaNoiva(containerId, tituloId) {
 
         container.innerHTML = "";
 
-        // 3. LOOP PARA CARREGAR OS PRODUTOS
         for (let i = 1; i < dados.length; i++) {
-            const nome = dados[i][1];   // Coluna B
-            const preco = dados[i][2];  // Coluna C
-            const status = dados[i][5]; // Coluna F
-            const img = dados[i][6];    // Coluna G (Links)
+            const nome = dados[i][1];   
+            const preco = dados[i][2];  
+            const status = dados[i][5]; 
+            const img = dados[i][6];    
 
-            // Só mostra se estiver "Disponível" e tiver nome
             if (status === "Disponível" && nome) {
-                
-                // Formatação da mensagem para o WhatsApp da loja
                 const textoMsg = `Olá! Quero presentear com: ${nome} (R$ ${preco}).\nDa lista de Presente de: ${nomeParaExibir}`;
                 const msgEncoded = encodeURIComponent(textoMsg);
                 
