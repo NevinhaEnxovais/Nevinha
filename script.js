@@ -163,23 +163,14 @@ function filtrarPeloMenu(categoria) {
 }
 
 function buscarProduto() {
-    // Pega o que o usuário digitou e transforma em minúsculo
-    const termoBusca = document.getElementById('inputBusca').value.toLowerCase();
+    const input = document.getElementById('inputBusca');
+    const termo = input.value.toLowerCase();
     
-    // Filtra a lista original
-    const produtosFiltrados = listaProdutos.filter(produto => {
-        const nome = produto.nome.toLowerCase();
-        const categoria = produto.categoria.toLowerCase();
-        const descricao = produto.descricao ? produto.descricao.toLowerCase() : "";
-
-        // Retorna verdadeiro se o termo estiver no nome, categoria ou descrição
-        return nome.includes(termoBusca) || 
-               categoria.includes(termoBusca) || 
-               descricao.includes(termoBusca);
+    const resultados = listaProdutos.filter(produto => {
+        return produto.nome.toLowerCase().includes(termo) || 
+               produto.categoria.toLowerCase().includes(termo);
     });
-
-    // Limpa a vitrine e renderiza apenas os encontrados
-    renderizarProdutos(produtosFiltrados);
+    renderizarProdutos(resultados);
 }
 
 
