@@ -1,5 +1,5 @@
 const listaProdutos = [
-    // CATEGORIA: CAMA 
+    // --- CATEGORIA: CASAL (PADRÃO) ---
     { nome: "Cobertor Kyor Jolitex", categoria: "casal", preco: 219.00, imagem: "https://i.postimg.cc/qvp2b1q2/kyor.png", descricao: "Gramatura 415 g/m²" },
     { nome: "Edredom Capetown Casal", categoria: "casal", preco: 339.00, imagem: "https://i.postimg.cc/XY9DFHhd/capetow.png", descricao: "Praticidade e conforto" },
     { nome: "Colcha Teka Allegro Plus", categoria: "casal", preco: 89.00, imagem: "https://i.postimg.cc/44M80RRY/colcha-teka.png", descricao: "Casal Padrão" },
@@ -14,50 +14,49 @@ const listaProdutos = [
     { nome: "Cobreleito Plaza Lavive", categoria: "casal", preco: 419.00, imagem: "https://i.postimg.cc/KYG1X5K5/plaza.png", descricao: "3 Pçs Dupla Face" },
     { nome: "Kit Colcha Piquet", categoria: "casal", preco: 279.00, imagem: "https://i.postimg.cc/MG6nkYcV/piquet.png", descricao: "100% Algodão" },
     { nome: "Colcha Milão Corttex", categoria: "casal", preco: 117.00, imagem: "https://i.postimg.cc/xdfXrPkk/milao.jpg", descricao: "Casal Padrão" },
-    { nome: "Kit Colcha Paris Corttex", categoria: "casal", preco: 117.00, imagem: "https://i.postimg.cc/k5J2ryVc/ponto-palito.png", descricao: "3 Peças Dupla face" }, // Sincronizado com lista
+    { nome: "Kit Colcha Paris Corttex", categoria: "casal", preco: 117.00, imagem: "https://i.postimg.cc/k5J2ryVc/ponto-palito.png", descricao: "3 Peças Dupla face" },
     { nome: "Saia Box Microfibra", categoria: "casal", preco: 179.00, imagem: "https://i.postimg.cc/k5J2ryVc/ponto-palito.png", descricao: "Ponto Palito" },
     { nome: "Saia em Malha Adomes", categoria: "casal", preco: 69.00, imagem: "https://i.postimg.cc/cJFrd8Yw/saia-malha.png", descricao: "Casal" },
     { nome: "Pillow Top Casal Niazitex", categoria: "casal", preco: 319.00, imagem: "img/pillow-top.jpg", descricao: "Conforto Extra" },
-    { nome: "Protetor Impermeável c/ Zíper", categoria: "casal", preco: 25.00, imagem: "https://i.postimg.cc/wBw79sJc/travesseiro-impermeavel.png", descricao: "Vivaldi" },
     { nome: "Protetor Impermeável Algodão", categoria: "casal", preco: 149.00, imagem: "https://i.postimg.cc/R0gNvnfH/protetor-impermeavel.png", descricao: "100% Algodão" },
-    //solteiro
-    { nome: "Jogo lençol Premium Solteiro", categoria: "cama", preco: 119.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
-    { nome: "Kit colcha Londres Solteiro", categoria: "cama", preco: 199.00, imagem: "", descricao: "Matelassê 2 peças" },
-    { nome: "Colcha Sicilia Solteiro", categoria: "cama", preco: 139.00, imagem: "", descricao: "Ultrassônica 2 peças" },
-    { nome: "Jogo lençol Teka Solteiro", categoria: "cama", preco: 169.00, imagem: "", descricao: "150 Fios - Algodão" },
-    { nome: "Jogo lençol Dohler Ambar Solteiro", categoria: "cama", preco: 239.00, imagem: "", descricao: "3 Peças - 100% Algodão" },
-    { nome: "Kit colcha Londres Solteiro", categoria: "cama", preco: 199.00, imagem: "", descricao: "Matelassê 2 peças" },
-    { nome: "Colcha Sicilia Solteiro", categoria: "cama", preco: 139.00, imagem: "", descricao: "Ultrassônica 2 peças" },
-    { nome: "Colcha Paris Solteiro", categoria: "cama", preco: 87.00, imagem: "", descricao: "Dupla Face 2 peças" },
-    { nome: "Colcha Plaza Solteiro", categoria: "cama", preco: 329.00, imagem: "", descricao: "Lavive Luxo 2 peças" },
-    { nome: "Colcha Montblack Solteiro", categoria: "cama", preco: 119.00, imagem: "", descricao: "Microfibra Corttex" },
-    { nome: "Edredom Dona do Lar Solteiro", categoria: "cama", preco: 169.00, imagem: "", descricao: "Dupla Face Macio" },
-    { nome: "Cobertor Capetowne Solteiro", categoria: "cama", preco: 320.00, imagem: "", descricao: "Gramatura 600g Luxo" },
-    { nome: "Saia Box Solteiro", categoria: "cama", preco: 149.00, imagem: "", descricao: "Ponto Palito" },
-    //queen
-    { nome: "Jogo lençol Premium Queen", categoria: "cama", preco: 165.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
-    { nome: "Jogo lençol Dohler Ambar Queen", categoria: "cama", preco: 329.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
-    { nome: "Jogo lençol Teka Queen", categoria: "cama", preco: 249.00, imagem: "", descricao: "150 Fios - 4 Peças" },
-    { nome: "Kit colcha Piquet Queen", categoria: "cama", preco: 339.00, imagem: "", descricao: "100% Algodão Dohler" },
-    { nome: "Kit colcha Plaza Queen", categoria: "cama", preco: 449.00, imagem: "", descricao: "Lavive Luxo 3 peças" },
-    { nome: "Kit colcha Londres Queen", categoria: "cama", preco: 299.00, imagem: "", descricao: "Matelassê 3 peças" },
-    { nome: "Kit colcha Sicilia Queen", categoria: "cama", preco: 199.00, imagem: "", descricao: "Ultrassônica 3 peças" },
-    { nome: "Kit Coordenado Charlote Queen", categoria: "cama", preco: 580.00, imagem: "", descricao: "Jogo Completo Luxo" },
-    { nome: "Cobertor Capetowne Queen", categoria: "cama", preco: 399.00, imagem: "", descricao: "Gramatura Alta" },
-    { nome: "Saia Box Queen", categoria: "cama", preco: 189.00, imagem: "", descricao: "Kacyumara Ponto Palito" },
-    //king
-    { nome: "Jogo lençol Premium King", categoria: "cama", preco: 239.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
-    { nome: "Jogo lençol Dohler Ambar King", categoria: "cama", preco: 389.00, imagem: "", descricao: "4 Peças - Luxo" },
-    { nome: "Jogo lençol Teka King", categoria: "cama", preco: 289.00, imagem: "", descricao: "150 Fios - Algodão" },
-    { nome: "Kit colcha Plaza King", categoria: "cama", preco: 489.00, imagem: "", descricao: "Lavive Luxo 3 peças" },
-    { nome: "Kit colcha Londres King", categoria: "cama", preco: 349.00, imagem: "", descricao: "Matelassê 3 peças" },
-    { nome: "Kit Coordenado Charlote King", categoria: "cama", preco: 630.00, imagem: "", descricao: "Jogo Completo Luxo" },
-    { nome: "Colcha Sicilia King", categoria: "cama", preco: 219.00, imagem: "", descricao: "Ultrassônica 3 peças" },
-    { nome: "Cobertor Capetowne King", categoria: "cama", preco: 528.00, imagem: "", descricao: "Alta Gramatura" },
-    { nome: "Saia Box King", categoria: "cama", preco: 199.00, imagem: "https://i.postimg.cc/k5J2ryVc/ponto-palito.png", descricao: "Kacyumara Ponto Palito" }
-    
 
-    // BANHO
+    // --- CATEGORIA: SOLTEIRO ---
+    { nome: "Jogo lençol Premium Solteiro", categoria: "solteiro", preco: 119.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
+    { nome: "Jogo lençol Teka Solteiro", categoria: "solteiro", preco: 169.00, imagem: "", descricao: "150 Fios - Algodão" },
+    { nome: "Jogo lençol Ambar Solteiro", categoria: "solteiro", preco: 239.00, imagem: "", descricao: "3 Peças - Döhler" },
+    { nome: "Kit colcha Londres Solteiro", categoria: "solteiro", preco: 199.00, imagem: "", descricao: "Matelassê 2 peças" },
+    { nome: "Colcha Sicilia Solteiro", categoria: "solteiro", preco: 139.00, imagem: "", descricao: "Ultrassônica 2 peças" },
+    { nome: "Colcha Paris Solteiro", categoria: "solteiro", preco: 87.00, imagem: "", descricao: "Dupla Face 2 peças" },
+    { nome: "Colcha Plaza Solteiro", categoria: "solteiro", preco: 329.00, imagem: "", descricao: "Lavive Luxo 2 peças" },
+    { nome: "Colcha Montblack Solteiro", categoria: "solteiro", preco: 119.00, imagem: "", descricao: "Microfibra Corttex" },
+    { nome: "Edredom Dona do Lar Solteiro", categoria: "solteiro", preco: 169.00, imagem: "", descricao: "Dupla Face Macio" },
+    { nome: "Cobertor Capetowne Solteiro", categoria: "solteiro", preco: 320.00, imagem: "", descricao: "Gramatura 600g Luxo" },
+    { nome: "Saia Box Solteiro", categoria: "solteiro", preco: 149.00, imagem: "", descricao: "Ponto Palito" },
+
+    // --- CATEGORIA: QUEEN ---
+    { nome: "Jogo lençol Premium Queen", categoria: "queen", preco: 165.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
+    { nome: "Jogo lençol Ambar Queen", categoria: "queen", preco: 329.00, imagem: "", descricao: "4 Peças - Döhler" },
+    { nome: "Jogo lençol Teka Queen", categoria: "queen", preco: 249.00, imagem: "", descricao: "150 Fios - 4 Peças" },
+    { nome: "Kit colcha Piquet Queen", categoria: "queen", preco: 339.00, imagem: "", descricao: "100% Algodão Dohler" },
+    { nome: "Kit colcha Plaza Queen", categoria: "queen", preco: 449.00, imagem: "", descricao: "Lavive Luxo 3 peças" },
+    { nome: "Kit colcha Londres Queen", categoria: "queen", preco: 299.00, imagem: "", descricao: "Matelassê 3 peças" },
+    { nome: "Kit colcha Sicilia Queen", categoria: "queen", preco: 199.00, imagem: "", descricao: "Ultrassônica 3 peças" },
+    { nome: "Kit Coordenado Charlote Queen", categoria: "queen", preco: 580.00, imagem: "", descricao: "Jogo Completo Luxo" },
+    { nome: "Cobertor Capetowne Queen", categoria: "queen", preco: 399.00, imagem: "", descricao: "Gramatura Alta" },
+    { nome: "Saia Box Queen", categoria: "queen", preco: 189.00, imagem: "", descricao: "Kacyumara Ponto Palito" },
+
+    // --- CATEGORIA: KING ---
+    { nome: "Jogo lençol Premium King", categoria: "king", preco: 239.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
+    { nome: "Jogo lençol Ambar King", categoria: "king", preco: 389.00, imagem: "", descricao: "4 Peças - Luxo" },
+    { nome: "Jogo lençol Teka King", categoria: "king", preco: 289.00, imagem: "", descricao: "150 Fios - Algodão" },
+    { nome: "Kit colcha Plaza King", categoria: "king", preco: 489.00, imagem: "", descricao: "Lavive Luxo 3 peças" },
+    { nome: "Kit colcha Londres King", categoria: "king", preco: 349.00, imagem: "", descricao: "Matelassê 3 peças" },
+    { nome: "Kit Coordenado Charlote King", categoria: "king", preco: 630.00, imagem: "", descricao: "Jogo Completo Luxo" },
+    { nome: "Colcha Sicilia King", categoria: "king", preco: 219.00, imagem: "", descricao: "Ultrassônica 3 peças" },
+    { nome: "Cobertor Capetowne King", categoria: "king", preco: 528.00, imagem: "", descricao: "Alta Gramatura" },
+    { nome: "Saia Box King", categoria: "king", preco: 199.00, imagem: "https://i.postimg.cc/k5J2ryVc/ponto-palito.png", descricao: "Kacyumara Ponto Palito" },
+
+    // --- CATEGORIA: BANHO ---
     { nome: "Toalha de Banho Lumina", categoria: "banho", preco: 79.00, imagem: "https://i.postimg.cc/pdPHXWtf/lumina.jpg", descricao: "Karsten" },
     { nome: "Toalha de Banho Prisma", categoria: "banho", preco: 48.00, imagem: "https://i.postimg.cc/SKmhNSpR/jogo-prisma-variedade.png", descricao: "Döhler" },
     { nome: "Toalha de Banho Wave", categoria: "banho", preco: 54.00, imagem: "https://i.postimg.cc/wBFd1C6R/toalha-banho-rosto-corttex-macio-wave.jpg", descricao: "Corttex" },
@@ -69,56 +68,45 @@ const listaProdutos = [
     { nome: "Jogo de Banheiro Riviera", categoria: "banho", preco: 110.00, imagem: "https://i.postimg.cc/SK8jMNnw/riviera.png", descricao: "Jolitex" },
     { nome: "Jogo de Banheiro Oasis", categoria: "banho", preco: 69.00, imagem: "https://i.postimg.cc/3wpWvJkV/jogo-de-banheiro-oasis.png", descricao: "3 Peças" },
     { nome: "Piso Royal 100% Algodão", categoria: "banho", preco: 22.00, imagem: "https://i.postimg.cc/bvbdtNZ4/piso-Royal.png", descricao: "Döhler" },
-    { nome: "Jogo de Toalha Lumina 100% algodão", categoria: "banho", preco: 117.00, imagem: "https://i.postimg.cc/pdPHXWtf/lumina.jpg", descricao: "Karsten - Jogo" },
     { nome: "Jogo de Toalhas Lollipop 5 Peças", categoria: "banho", preco: 339.00, imagem: "", descricao: "Premium" },
     { nome: "Lixeira em Inox 5L", categoria: "banho", preco: 99.00, imagem: "", descricao: "Banheiro" },
     { nome: "Jogo de Toalha Mafratex 5 pçs", categoria: "banho", preco: 189.00, imagem: "", descricao: "100% Algodão Premium" },
     { nome: "Jogo de Toalha Buettner 5 pçs", categoria: "banho", preco: 269.00, imagem: "", descricao: "Melody Premium Buettner" },
-    { nome: "Kit Piso Döhler 5 pçs + Difusor", categoria: "banho", preco: 126.00, imagem: "", descricao: "5 Pisos + Fragrância de Ambiente" },
-    { nome: "Roupão Velour Masculino M", categoria: "banho", preco: 169.00, imagem: "", descricao: "Döhler - Qualidade Luxo" },
-    { nome: "Roupão Dohler Feminino M", categoria: "banho", preco: 149.00, imagem: "", descricao: "Döhler - Felpudo" },
+    { nome: "Kit Piso Döhler 5 pçs + Difusor", categoria: "banho", preco: 126.00, imagem: "", descricao: "5 Pisos + Fragrância" },
+    { nome: "Roupão Velour Masculino M", categoria: "banho", preco: 169.00, imagem: "", descricao: "Döhler - Masculino" },
+    { nome: "Roupão Dohler Feminino M", categoria: "banho", preco: 149.00, imagem: "", descricao: "Döhler - Feminino" },
 
-    // COZINHA E MESA 
+    // --- CATEGORIA: MESA ---
     { nome: "Americano Souplast Redondo", categoria: "mesa", preco: 10.00, imagem: "https://i.postimg.cc/Kjsg5pmS/jogo-americano.png", descricao: "Unidade" },
     { nome: "Kit Jogo americano Redondo 6pçs", categoria: "mesa", preco: 60.00, imagem: "https://i.postimg.cc/Kjsg5pmS/jogo-americano.png", descricao: "Conjunto" },
-    { nome: "Tapete Cozinha Premier 1,20m", categoria: "mesa", preco: 99.00, imagem: "https://i.postimg.cc/05dvJKcT/manta-de-jarra.png", descricao: "" },
     { nome: "Jogo Tapete Cozinha Gourmet", categoria: "mesa", preco: 149.00, imagem: "https://i.postimg.cc/66LKG4YF/jolitex-tapte-goumet.png", descricao: "3 Peças" },
     { nome: "Pano de Copa Tecilar", categoria: "mesa", preco: 9.00, imagem: "https://i.postimg.cc/4yFh12XG/tecilar.png", descricao: "Döhler" },
     { nome: "Pano de Prato Felpudo", categoria: "mesa", preco: 18.00, imagem: "https://i.postimg.cc/0jHJCXPH/atoalhado.png", descricao: "Döhler" },
     { nome: "Guardanapo ponto palito", categoria: "mesa", preco: 8.00, imagem: "https://i.postimg.cc/D0Ybcpn9/guardanapo.png", descricao: "Tecido" },
-    { nome: "Kit Guardanapo Tecido 6 peças", categoria: "mesa", preco: 48.00, imagem: "https://i.postimg.cc/D0Ybcpn9/guardanapo.png", descricao: "Conjunto" },
     { nome: "Manta de Jarra", categoria: "mesa", preco: 59.00, imagem: "https://i.postimg.cc/05dvJKcT/manta-de-jarra.png", descricao: "Pedrarias" },
     { nome: "Escorredor de Louça", categoria: "mesa", preco: 55.00, imagem: "https://i.postimg.cc/4yFh12XC/escorredor-de-louca-buettner.png", descricao: "Buttener" },
-    { nome: "Toalha de Mesa Requinte Döhler", categoria: "mesa", preco: 99.00, imagem: "", descricao: "Luxo" },
-    { nome: "Jogo de Panelas Cerâmica 9pçs", categoria: "utilitarios", preco: 690.00, imagem: "", descricao: "Revestimento cerâmico antiaderente" },
-    { nome: "Faqueiro Alpha Premium 24pçs", categoria: "utilitarios", preco: 189.00, imagem: "", descricao: "Aço Inox Premium" },
-    { nome: "Panela Elétrica Multifuncional", categoria: "utilitarios", preco: 139.00, imagem: "", descricao: "Praticidade na cozinha" },
-    { nome: "Frigideira Antiaderente 26cm", categoria: "utilitarios", preco: 199.00, imagem: "", descricao: "Tamanho grande" },
     { nome: "Kit 10 Panos de Copa Tecilar", categoria: "mesa", preco: 90.00, imagem: "", descricao: "Döhler - 10 unidades" },
-    { nome: "Kit 5 Panos de Copa Jacquard", categoria: "mesa", preco: 90.00, imagem: "", descricao: "Luxo - 5 unidades" },
     { nome: "Argolas para Guardanapo 6pçs", categoria: "mesa", preco: 96.00, imagem: "", descricao: "Kit Decorativo" },
 
-    // DECORAÇÃO E UTILITÁRIOS (SALA)
+    // --- CATEGORIA: SALA ---
     { nome: "Capa de Cadeira 6 Peças", categoria: "sala", preco: 79.00, imagem: "https://i.postimg.cc/fyg0vqDr/capa-de-cadeira-6.png", descricao: "Malha - Jogo 6" },
     { nome: "Capa de Cadeira 4 Peças", categoria: "sala", preco: 65.00, imagem: "https://i.postimg.cc/2yXBx9r9/capa-de-cadeira.png", descricao: "Malha - Jogo 4" },
-    { nome: "Cortina Translúcida Messina", categoria: "sala", preco: 399.00, imagem: "https://i.postimg.cc/G2DcfMP3/messina.png", descricao: "Jacquard Döhler" },
+    { nome: "Cortina Sala Messina 3.00x2.50", categoria: "sala", preco: 359.00, imagem: "https://i.postimg.cc/G2DcfMP3/messina.png", descricao: "Jacquard Döhler Luxo" },
     { nome: "Cortina Janela Blackout", categoria: "sala", preco: 99.00, imagem: "https://i.postimg.cc/C18F2vCL/janela.png", descricao: "Bella Janela" },
     { nome: "Cortina Oxford", categoria: "sala", preco: 49.00, imagem: "https://i.postimg.cc/D0K23q5F/cortina-oxford.png", descricao: "3,00m x 2,60m" },
     { nome: "Manta para Sofá Marrocos", categoria: "sala", preco: 99.00, imagem: "", descricao: "Döhler G" },
-    { nome: "Tapete Centro Classic Oasis", categoria: "sala", preco: 120.00, imagem: "", descricao: "1.0 x 1.50" },
-    { nome: "Puff Trançado", categoria: "sala", preco: 218.00, imagem: "", descricao: "Decoração" },
-    { nome: "Kit 2 tapetes Porta lima", categoria: "sala", preco: 92.00, imagem: "", descricao: "Niazitex" },
-    { nome: "Cortina Sala Messina 3.00x2.50", categoria: "sala", preco: 359.00, imagem: "", descricao: "Jacquard Döhler Luxo" },
     { nome: "Cortina Carol Veneza 4.00x2.60", categoria: "sala", preco: 252.00, imagem: "", descricao: "Veneza - Grande" },
-    { nome: "Cortina Estampada 3.00x2.70", categoria: "sala", preco: 99.00, imagem: "", descricao: "Decorativa" },
     { nome: "Tapete Sala Málaga 1.40x2.00", categoria: "sala", preco: 579.00, imagem: "", descricao: "Tapete Luxo para Centro" },
-    { nome: "Mop de Limpeza Giratório", categoria: "utilitarios", preco: 79.00, imagem: "", descricao: "Praticidade com balde" },
-    { nome: "Bandeja Porta Controle", categoria: "sala", preco: 69.00, imagem: "", descricao: "Organizador de braço de sofá" },
-    { nome: "Kit 6 Capas Almofada Grippir", categoria: "sala", preco: 174.00, imagem: "", descricao: "Renda Grippir Decorativa" }
-    
-    // UTILITÁRIOS 
-    { nome: "Cozedor de Ovos Elétrico", categoria: "utilitarios", preco: 115.00, imagem: "https://i.postimg.cc/d3ST9NwX/cozedor-de-ovos.pngv", descricao: "Portátil" },
+    { nome: "Bandeja Porta Controle", categoria: "sala", preco: 69.00, imagem: "", descricao: "Organizador para sofá" },
+    { nome: "Kit 6 Capas Almofada Grippir", categoria: "sala", preco: 174.00, imagem: "", descricao: "Renda Grippir Decorativa" },
+
+    // --- CATEGORIA: UTILITÁRIOS ---
+    { nome: "Cozedor de Ovos Elétrico", categoria: "utilitarios", preco: 115.00, imagem: "https://i.postimg.cc/d3ST9NwX/cozedor-de-ovos.png", descricao: "Portátil" },
     { nome: "Omeleteira Elétrica", categoria: "utilitarios", preco: 199.00, imagem: "https://i.postimg.cc/4yFh12Xg/omeleteira.png", descricao: "Multilaser" },
     { nome: "Chaleira Elétrica 1,8L", categoria: "utilitarios", preco: 139.00, imagem: "https://i.postimg.cc/GtSsjgdM/chaleira.png", descricao: "Inox" },
-    { nome: "Utensílios para Churrasco", categoria: "utilitarios", preco: 89.00, imagem: "https://i.postimg.cc/vTS6v2Gw/kit-churrasco.png", descricao: "Inox" }
+    { nome: "Jogo de Panelas Cerâmica 9pçs", categoria: "utilitarios", preco: 690.00, imagem: "", descricao: "Revestimento cerâmico" },
+    { nome: "Faqueiro Alpha Premium 24pçs", categoria: "utilitarios", preco: 189.00, imagem: "", descricao: "Aço Inox Premium" },
+    { nome: "Panela Elétrica Multifuncional", categoria: "utilitarios", preco: 139.00, imagem: "", descricao: "Praticidade" },
+    { nome: "Mop de Limpeza Giratório", categoria: "utilitarios", preco: 79.00, imagem: "", descricao: "Limpeza Prática" },
+    { nome: "Frigideira Antiaderente 26cm", categoria: "utilitarios", preco: 199.00, imagem: "", descricao: "Tamanho grande" }
 ];
