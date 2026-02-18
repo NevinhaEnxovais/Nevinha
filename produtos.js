@@ -34,16 +34,16 @@ const listaProdutos = [
     { nome: "Saia Box Solteiro", categoria: "solteiro", preco: 149.00, imagem: "", descricao: "Ponto Palito" },
 
     // --- CATEGORIA: QUEEN ---
-    { nome: "Jogo lençol Premium Queen", categoria: "queen", preco: 165.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
-    { nome: "Jogo lençol Ambar Queen", categoria: "queen", preco: 329.00, imagem: "", descricao: "4 Peças - Döhler" },
-    { nome: "Jogo lençol Teka Queen", categoria: "queen", preco: 249.00, imagem: "", descricao: "150 Fios - 4 Peças" },
-    { nome: "Kit colcha Piquet Queen", categoria: "queen", preco: 339.00, imagem: "", descricao: "100% Algodão Dohler" },
-    { nome: "Kit colcha Plaza Queen", categoria: "queen", preco: 449.00, imagem: "", descricao: "Lavive Luxo 3 peças" },
-    { nome: "Kit colcha Londres Queen", categoria: "queen", preco: 299.00, imagem: "", descricao: "Matelassê 3 peças" },
-    { nome: "Kit colcha Sicilia Queen", categoria: "queen", preco: 199.00, imagem: "", descricao: "Ultrassônica 3 peças" },
-    { nome: "Kit Coordenado Charlote Queen", categoria: "queen", preco: 580.00, imagem: "", descricao: "Jogo Completo Luxo" },
-    { nome: "Cobertor Capetowne Queen", categoria: "queen", preco: 399.00, imagem: "", descricao: "Gramatura Alta" },
-    { nome: "Saia Box Queen", categoria: "queen", preco: 189.00, imagem: "", descricao: "Kacyumara Ponto Palito" },
+    { nome: "Jogo lençol Premium Queen", categoria: "queen", preco: 165.00, imagem: "https://i.postimg.cc/7YXb3hFZ/premiun-Queen.jpg", descricao: "4 Peças - 100% Algodão" },
+    { nome: "Jogo lençol Ambar Queen", categoria: "queen", preco: 329.00, imagem: "https://i.postimg.cc/X7xXfqRS/ambar-queen.png", descricao: "4 Peças - Döhler" },
+    { nome: "Jogo lençol Teka Queen", categoria: "queen", preco: 249.00, imagem: "https://i.postimg.cc/gk4rVjCx/teka-queen.png", descricao: "150 Fios - 4 Peças" },
+    { nome: "Kit colcha Piquet Queen", categoria: "queen", preco: 339.00, imagem: "https://i.postimg.cc/X7xXfqRN/piquetqueen.png", descricao: "100% Algodão Dohler" },
+    { nome: "Kit colcha Plaza Queen", categoria: "queen", preco: 449.00, imagem: "https://i.postimg.cc/bNLdxr7N/plaza-queen.png", descricao: "Lavive Luxo 3 peças" },
+    { nome: "Kit colcha Londres Queen", categoria: "queen", preco: 299.00, imagem: "https://i.postimg.cc/Dy5mr09h/londresqueen.png", descricao: "Matelassê 3 peças" },
+    { nome: "Kit colcha Sicilia Queen", categoria: "queen", preco: 199.00, imagem: "https://i.postimg.cc/zXp3Cvs3/sicili.png", descricao: "Ultrassônica 3 peças" },
+    { nome: "Kit Coordenado Charlote Queen", categoria: "queen", preco: 580.00, imagem: "https://i.postimg.cc/rFgz1sBq/charlote.png", descricao: "Jogo Completo Luxo" },
+    { nome: "Cobertor Capetowne Queen", categoria: "queen", preco: 399.00, imagem: "https://i.postimg.cc/ncTM4ryH/capetown.png", descricao: "Gramatura Alta" },
+    { nome: "Saia Box Queen", categoria: "queen", preco: 189.00, imagem: "https://i.postimg.cc/hPMhLvkG/saiakaacyumaraqueen.png", descricao: "Kacyumara Ponto Palito" },
 
     // --- CATEGORIA: KING ---
     { nome: "Jogo lençol Premium King", categoria: "king", preco: 239.00, imagem: "", descricao: "4 Peças - 100% Algodão" },
