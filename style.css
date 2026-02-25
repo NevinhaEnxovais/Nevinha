@@ -329,68 +329,6 @@ header {
     transition: 0.3s;
 }
 
-<style>
-    /* Estilos Gerais dos Gatilhos */
-    .gatilho-container {
-        padding: 40px 20px;
-        text-align: center;
-        margin: 25px 15px;
-        border-radius: 15px;
-        font-family: 'Montserrat', sans-serif;
-        transition: transform 0.3s ease;
-    }
-
-    .gatilho-cursiva {
-        font-family: 'Amsterdam', cursive; /* Certifique-se que esta fonte está instalada */
-        font-size: 1.8rem;
-        color: #b59d85;
-        margin-bottom: 8px;
-        display: block;
-    }
-
-    .gatilho-titulo {
-        font-family: 'Cinzel', serif;
-        font-size: 1.1rem;
-        letter-spacing: 2px;
-        color: #333;
-        text-transform: uppercase;
-        margin-bottom: 15px;
-    }
-
-    .gatilho-texto {
-        font-size: 0.95rem;
-        color: #666;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-
-    /* Variações de Cores para cada Categoria */
-    .bg-medidas { background-color: #fdfcfb; border: 1px solid #eee; }
-    .bg-banho { background-color: #f4f7f9; border: 1px solid #e1e8ed; }
-    .bg-sala { background-color: #fafafa; border-left: 6px solid #d1d1d1; border-radius: 4px; }
-    .bg-decor { background-color: #fdf8f5; border: 1px dashed #e9dccf; }
-
-    /* Estilo das Medidas de Cama */
-    .medidas-grid {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 15px;
-    }
-
-    .medida-item {
-        background: #fff;
-        padding: 8px 15px;
-        border-radius: 8px;
-        border: 1px solid #f0f0f0;
-        font-size: 0.85rem;
-        font-weight: bold;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    }
-</style>
-   
 .btn-mapa:hover {
     background-color: #d4af37;
     transform: translateY(-3px);
