@@ -360,3 +360,71 @@ header {
     .vitrine { grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .foto-produto { height: 250px; }
 }
+/* --- SEÇÃO DE GATILHOS ESPECIALISTAS --- */
+.secao-especialista {
+    background-color: #fdfcfb;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    margin: 20px 10px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.gatilho-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.gatilho-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cursiva-titulo {
+    font-family: 'Amsterdam', cursive;
+    font-size: 1.6rem;
+    color: #b59d85;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.serifa-subtitulo {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.texto-dica {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid-medidas {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.tag-medida {
+    background: #fff;
+    padding: 5px 12px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #444;
+}
