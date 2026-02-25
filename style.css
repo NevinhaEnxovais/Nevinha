@@ -386,7 +386,7 @@ header {
 .cursiva-titulo {
     font-family: 'Amsterdam', cursive;
     font-size: 1.6rem;
-    color: #b59d85;
+    color: #2B547E;
     display: block;
     margin-bottom: 5px;
 }
@@ -395,7 +395,7 @@ header {
     font-family: 'Cinzel', serif;
     font-size: 1rem;
     letter-spacing: 1.5px;
-    color: #333;
+    color: #002366;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -426,5 +426,5 @@ header {
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: bold;
-    color: #444;
+    color: #002366;
 }
