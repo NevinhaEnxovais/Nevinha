@@ -16,7 +16,7 @@ header {
     justify-content: center; 
     align-items: center;
     width: 100%;
-    background: #fff;
+    background: #FFD700; 
 }
 
 .logo-principal { 
@@ -29,8 +29,8 @@ header {
    2. NAVEGAÇÃO E BUSCA
    =================================================== */
 .faixa-azul {
-    background: #FFD700; /* AMARELO DO LOGO */
-    color: #0033a0;      /* TEXTO EM AZUL PARA CONTRASTE */
+    background: #0033a0;
+    color: white;
     padding: 12px 0;
     width: 100%;
     position: sticky;
