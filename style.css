@@ -55,7 +55,7 @@ header {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #0033a0; /* Forçando cor azul no texto */
+    color: white;
 }
 
 /* Menu Lateral e Overlay */
