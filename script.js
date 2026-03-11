@@ -88,18 +88,10 @@ function filtrarPeloMenu(categoria) {
 }
 
 // Filtro por Texto (Barra de Pesquisa)
-function buscarProdutoNovo() {
-    const input = document.getElementById('inputBuscaNova');
-    if (!input) return;
-    const termo = input.value.toLowerCase().trim();
-    
-    const resultados = listaProdutos.filter(produto => {
-        return produto.nome.toLowerCase().includes(termo) || 
-               produto.categoria.toLowerCase().includes(termo);
-    });
-    
-    renderizarProdutos(resultados);
-}
+<div class="busca-central">
+    <input type="text" id="inputBuscaNova" placeholder="ENCONTRE AQUI" onkeyup="buscarProdutoNovo()">
+    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Lupa" onclick="buscarProdutoNovo()">
+</div>
 
 /* ===================================================
    3. CARRINHO DE COMPRAS
