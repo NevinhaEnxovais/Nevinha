@@ -36,6 +36,28 @@ function renderizarProdutos() {
     });
 }
 
+function buscarProdutoNovo() {
+    const input = document.getElementById('inputBuscaNova');
+    const termo = input.value.toLowerCase();
+    
+    // Filtra a lista de produtos (garanta que listaProdutos exista no seu produtos.js)
+    const resultados = listaProdutos.filter(produto => {
+        return produto.nome.toLowerCase().includes(termo) || 
+               produto.categoria.toLowerCase().includes(termo);
+    });
+    
+    renderizarProdutosFiltro(resultados);
+}
+
+// Função auxiliar para renderizar apenas os filtrados
+function renderizarProdutosFiltro(produtosFiltrados) {
+    const vitrine = document.querySelector('.vitrine');
+    vitrine.innerHTML = ""; 
+    
+    produtosFiltrados.forEach(produto => {
+        // ... (o mesmo código que você já tem na sua função renderizarProdutos original)
+    });
+}
 
 function showSlide(index) {
     const slidesContainer = document.querySelector('.carousel-slide');
