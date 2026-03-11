@@ -1,51 +1,14 @@
-/* ===================================================
-   1. VARIÁVEIS GLOBAIS E INICIALIZAÇÃO
-   =================================================== */
+
 let carrinho = [];
 let total = 0;
 let currentSlide = 0;
 let autoPlayTimer;
 
-// Inicialização Geral
-document.addEventListener('DOMContentLoaded', () => {
-    renderizarProdutos();       // Mostra todos os produtos ao abrir
-    iniciarPassagemAutomatica(); // Inicia o banner
-    
-    // Configura os filtros das "bolinhas" de categoria
-    const filtros = document.querySelectorAll('.cat-item');
-    filtros.forEach(filtro => {
-        filtro.addEventListener('click', () => {
-            const categoria = filtro.getAttribute('data-filter');
-            filtros.forEach(f => f.classList.remove('ativo'));
-            filtro.classList.add('ativo');
-            filtrar(categoria);
-        });
-    });
-
-    // Configura a busca ao apertar "Enter"
-    const inputBusca = document.getElementById('inputBuscaNova');
-    if (inputBusca) {
-        inputBusca.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') buscarProdutoNovo();
-        });
-    }
-});
-
-/* ===================================================
-   2. SISTEMA DE VITRINE E FILTRAGEM
-   =================================================== */
-
-// Função mestre que desenha os produtos na tela
 function renderizarProdutos(listaParaExibir = listaProdutos) {
     const vitrine = document.querySelector('.vitrine');
     if (!vitrine) return;
     
     vitrine.innerHTML = ""; 
-
-    if (listaParaExibir.length === 0) {
-        vitrine.innerHTML = "<p style='grid-column: 1/-1; text-align: center; padding: 50px;'>Nenhum produto encontrado.</p>";
-        return;
-    }
 
     listaParaExibir.forEach(produto => {
         const cardHTML = `
@@ -72,37 +35,82 @@ function renderizarProdutos(listaParaExibir = listaProdutos) {
     });
 }
 
-// Filtro por Categoria (Usado pelas bolinhas e menu lateral)
-function filtrar(categoria) {
-    if (categoria === 'tudo') {
-        renderizarProdutos(listaProdutos);
-    } else {
-        const filtrados = listaProdutos.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
-        renderizarProdutos(filtrados);
-    }
-}
-
-function filtrarPeloMenu(categoria) {
-    filtrar(categoria);
-    toggleMenu(); // Fecha o menu lateral após clicar
-}
-
+// 1. Função para filtrar os produtos
 function buscarProdutoNovo() {
     const input = document.getElementById('inputBuscaNova');
-    if (!input) return;
-    const termo = input.value.toLowerCase().trim();
+    const termo = input.value.toLowerCase();
     
+    // Filtra a lista baseada no nome ou categoria
     const resultados = listaProdutos.filter(produto => {
         return produto.nome.toLowerCase().includes(termo) || 
                produto.categoria.toLowerCase().includes(termo);
     });
-    
     renderizarProdutos(resultados);
+
 }
 
-/* ===================================================
-   3. CARRINHO DE COMPRAS
-   =================================================== */
+// 2. Nova função de renderização que aceita a lista filtrada
+function renderizarProdutosFiltrados(listaParaExibir) {
+    const vitrine = document.querySelector('.vitrine');
+    if (!vitrine) return;
+    
+    vitrine.innerHTML = ""; 
+
+    listaParaExibir.forEach(produto => {
+        const cardHTML = `
+            <div class="card" data-categoria="${produto.categoria}">
+                <div class="foto-produto">
+                    <img src="${produto.imagem}" alt="${produto.nome}">
+                </div>
+                <div class="detalhes">
+                    <h3>${produto.nome}</h3>
+                    <p style="font-size: 11px; color: #666; margin-bottom: 5px;">${produto.descricao}</p>
+                    <p>R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+                    <div class="controle-qtd" style="display: flex; align-items: center; justify-content: center; gap: 15px; margin: 10px 0;">
+                        <button type="button" onclick="alterarQtdNoCard(this, -1)" style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; background: #f8f8f8; font-weight: bold;">-</button>
+                        <span class="qtd-numero" style="font-weight: bold; font-size: 16px;">1</span>
+                        <button type="button" onclick="alterarQtdNoCard(this, 1)" style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; background: #f8f8f8; font-weight: bold;">+</button>
+                    </div>
+                    <button class="btn-comprar" onclick="adicionarComQtd(this, '${produto.nome}', ${produto.preco})">
+                        🛒 ADICIONAR AO CARRINHO
+                    </button>
+                </div>
+            </div>
+        `;
+        vitrine.innerHTML += cardHTML;
+    });
+}
+
+// 3. Faz a busca funcionar ao apertar "Enter" no teclado
+document.getElementById('inputBuscaNova').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        buscarProdutoNovo();
+    }
+});
+
+function showSlide(index) {
+    const slidesContainer = document.querySelector('.carousel-slide');
+    const slides = document.querySelectorAll('.carousel-slide img');
+    if (!slidesContainer || slides.length === 0) return;
+
+    if (index >= slides.length) currentSlide = 0;
+    else if (index < 0) currentSlide = slides.length - 1;
+    else currentSlide = index;
+
+    slidesContainer.style.transform = `translateX(${-currentSlide * 100}%)`;
+}
+
+function moveSlideManual(direction) {
+    clearInterval(autoPlayTimer); 
+    showSlide(currentSlide + direction);
+    iniciarPassagemAutomatica(); 
+}
+
+function iniciarPassagemAutomatica() {
+    clearInterval(autoPlayTimer); 
+    autoPlayTimer = setInterval(() => showSlide(currentSlide + 1), 5000);
+}
+
 
 function alterarQtdNoCard(botao, mudanca) {
     const numeroSpan = botao.parentElement.querySelector('.qtd-numero');
@@ -120,7 +128,7 @@ function adicionarComQtd(botao, nome, preco) {
         adicionarAoCarrinho(nome, preco);
     }
     
-    card.querySelector('.qtd-numero').innerText = "1"; // Reseta contador do card
+    card.querySelector('.qtd-numero').innerText = "1";
     alert(`${qtd}x ${nome} adicionado ao carrinho!`);
 }
 
@@ -142,6 +150,7 @@ function atualizarInterface() {
         contador.innerText = totalItens;
     }
 }
+
 
 function abrirModal() {
     const lista = document.getElementById('itens-carrinho');
@@ -168,8 +177,12 @@ function fecharModal() { document.getElementById('modal-carrinho').style.display
 
 function enviarPedido() {
     if (carrinho.length === 0) return alert("Carrinho vazio!");
+    
+   
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     localStorage.setItem('totalCarrinho', total.toString());
+
+    
     window.location.href = "finalizar.html";
 }
 
@@ -179,38 +192,41 @@ function limparCarrinho() {
     }
 }
 
-/* ===================================================
-   4. INTERFACE (MENU E CARROSSEL)
-   =================================================== */
 
 function toggleMenu() {
     const menu = document.getElementById("menuLateral");
     const overlay = document.getElementById("overlay");
-    if (!menu) return;
     const aberto = menu.style.width === "280px";
     menu.style.width = aberto ? "0px" : "280px";
     overlay.style.display = aberto ? "none" : "block";
 }
 
-function showSlide(index) {
-    const slidesContainer = document.querySelector('.carousel-slide');
-    const slides = document.querySelectorAll('.carousel-slide img');
-    if (!slidesContainer || slides.length === 0) return;
-
-    if (index >= slides.length) currentSlide = 0;
-    else if (index < 0) currentSlide = slides.length - 1;
-    else currentSlide = index;
-
-    slidesContainer.style.transform = `translateX(${-currentSlide * 100}%)`;
+function filtrar(categoria) {
+    document.querySelectorAll('.card').forEach(card => {
+        const catCard = card.getAttribute('data-categoria');
+        card.style.display = (categoria === 'tudo' || catCard === categoria) ? 'block' : 'none';
+    });
 }
 
-function moveSlideManual(direction) {
-    clearInterval(autoPlayTimer); 
-    showSlide(currentSlide + direction);
-    iniciarPassagemAutomatica(); 
+function filtrarPeloMenu(categoria) {
+    filtrar(categoria);
+    toggleMenu();
 }
 
-function iniciarPassagemAutomatica() {
-    clearInterval(autoPlayTimer); 
-    autoPlayTimer = setInterval(() => showSlide(currentSlide + 1), 5000);
-}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarProdutos(); 
+    showSlide(0);
+    iniciarPassagemAutomatica();
+
+    
+    const filtros = document.querySelectorAll('.cat-item');
+    filtros.forEach(filtro => {
+        filtro.addEventListener('click', () => {
+            const categoria = filtro.getAttribute('data-filter');
+            filtros.forEach(f => f.classList.remove('ativo'));
+            filtro.classList.add('ativo');
+            filtrar(categoria);
+        });
+    });
+});
