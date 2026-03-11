@@ -28,6 +28,71 @@ header {
 /* ===================================================
    2. NAVEGAÇÃO E BUSCA
    =================================================== */
+
+.top-bar-utilitarios {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 20px;
+    width: 100%;
+}
+
+.container-top-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Busca Centralizada */
+.busca-central {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333; /* Linha sutil embaixo da busca */
+    width: 40%;
+    max-width: 400px;
+}
+
+.busca-central input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.busca-central button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+/* Links e Botão Atacado */
+.links-utilitarios a {
+    text-decoration: none;
+    color: #333;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-atacado:hover {
+    color: #0033a0;
+}
+
+/* Responsividade para Celular */
+@media (max-width: 768px) {
+    .top-bar-utilitarios { padding: 10px; }
+    .social-top, .links-utilitarios { display: none; } /* Esconde o que sobra no mobile */
+    .busca-central { width: 100%; } /* Busca ocupa tudo no celular */
+}
+
 .faixa-azul {
     background: #0033a0;
     color: white;
