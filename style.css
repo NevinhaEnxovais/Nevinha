@@ -1,12 +1,16 @@
-   1. ESTRUTURA E RESET
+  /* 1. ESTRUTURA E RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body { 
     font-family: 'Montserrat', sans-serif; 
-    margin: 0; 
     background: #fff; 
     color: #333; 
     overflow-x: hidden; 
     width: 100%;
-    padding: 0;
 }
 
 /* Centralização Real da Logo */
@@ -32,25 +36,29 @@ header {
 .top-bar-utilitarios {
     background-color: #ffffff;
     border-bottom: 1px solid #eee;
-    padding: 8px 20px;
+    padding: 10px 20px;
     width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
 }
 
 .container-top-bar {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Instagram esquerda | Busca centro | Atacado direita */
     align-items: center;
 }
 
-/* Busca Centralizada */
+/* Centralização Real da Busca */
 .busca-central {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #333; /* Linha sutil embaixo da busca */
-    width: 40%;
-    max-width: 400px;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    max-width: 450px; /* Tamanho ideal para centralizar */
+    margin: 0 15px;
 }
 
 .busca-central input {
@@ -96,31 +104,37 @@ header {
 .faixa-azul {
     background: #0033a0;
     color: white;
-    padding: 12px 0;
+    padding: 15px 0;
     width: 100%;
     position: sticky;
-    top: 45px; /* IMPORTANTE: Esse valor deve ser a altura da barra branca */
+    top: 45px; 
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 0; /* Isso tira o buraco entre as barras */
 }
 
 .conteudo-faixa {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza a frase no meio */
     align-items: center;
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
-.faixa-azul {
-    background: #0033a0;
-    color: white;
-    padding: 12px 0;
-    width: 100%;
-    position: sticky;
-    top: 45px; /* <--- ESSA É A LINHA CHAVE */
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+.faixa-azul p {
+    font-size: 18px; /* Aqui a frase fica maior */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: center;
+}
+.menu-hamburguer { 
+    position: absolute; /* Faz ele flutuar */
+    left: 20px;         /* Gruda ele na esquerda da faixa */
+    cursor: pointer;
 }
 
 /* Menu Lateral e Overlay */
