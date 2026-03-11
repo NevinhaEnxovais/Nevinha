@@ -93,6 +93,28 @@ header {
     .busca-central { width: 100%; } /* Busca ocupa tudo no celular */
 }
 
+/* 1. Torna a barra branca fixa no topo */
+.top-bar-utilitarios {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    padding: 8px 20px;
+    width: 100%;
+    position: sticky; /* Torna fixa */
+    top: 0;           /* No topo absoluto */
+    z-index: 1001;    /* Maior que a faixa azul */
+}
+
+/* 2. Ajusta a faixa azul para grudar LOGO ABAIXO da branca */
+.faixa-azul {
+    background: #0033a0;
+    color: white;
+    padding: 12px 0;
+    width: 100%;
+    position: sticky;
+    top: 45px; /* IMPORTANTE: Esse valor deve ser a altura da barra branca */
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 .faixa-azul {
     background: #0033a0;
     color: white;
