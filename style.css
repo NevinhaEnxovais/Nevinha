@@ -59,15 +59,6 @@ header {
     letter-spacing: 1px;
 }
 
-#inputBusca {
-    width: 180px;
-    padding: 6px 12px;
-    border-radius: 15px;
-    border: none;
-    outline: none;
-    font-size: 13px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
 
 /* Menu Lateral e Overlay */
 .menu-hamburguer { width: 30px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
@@ -346,7 +337,6 @@ header {
    =================================================== */
 @media (max-width: 768px) {
     .logo-principal { width: 160px !important; }
-    #inputBusca { width: 110px !important; }
     .faixa-azul p { font-size: 9px !important; }
     
     .vitrine { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 8px; }
