@@ -513,3 +513,23 @@ header {
     min-width: 25px !important;
     object-fit: contain !important;
 }
+/* TRAVA SUPREMA - ISSO MATA A ZEBRA DO CARRINHO GIGANTE */
+.top-bar-utilitarios img {
+    width: 25px !important;
+    height: 25px !important;
+    max-width: 25px !important;
+    min-width: 25px !important;
+    display: inline-block !important;
+}
+
+.container-top-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 5px 15px !important;
+}
+
+/* Esconde qualquer lixo que tenha sobrado fora das divs */
+body > .busca-central, body > .links-utilitarios {
+    display: none !important;
+}
