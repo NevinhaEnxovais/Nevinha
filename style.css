@@ -464,23 +464,3 @@ header {
     font-size: 13px;
 }
 
-/* A MATADORA DE ZEBRA: Trava todos os ícones das faixas */
-.top-bar-utilitarios img, 
-.top-bar-utilitarios i,
-.busca-central img,
-.social-top img,
-#carrinho-topo img {
-    width: 25px !important;
-    height: 25px !important;
-    max-width: 25px !important;
-    min-width: 25px !important;
-    object-fit: contain !important;
-    display: inline-block !important;
-}
-
-/* Faz a Faixa Azul grudar logo abaixo da Amarela */
-.faixa-azul {
-    position: sticky;
-    top: 45px; /* Altura da amarela */
-    z-index: 1000;
-}
