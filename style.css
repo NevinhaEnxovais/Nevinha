@@ -276,9 +276,6 @@ header {
     transition: 0.3s;
 }
 
-.social-links a:hover {
-    color: #d4af37 !important; 
-}
 .localizacao-loja {
     margin-top: 40px;
     padding: 25px;
@@ -416,43 +413,74 @@ header {
     font-weight: bold;
     color: #002366;
 }
-/* --- TRAVA DE SEGURANÇA PARA ÍCONES GIGANTES --- */
+/* ===================================================
+   FAIXA AMARELA (NOVA) + FAIXA AZUL + TRAVA DE ÍCONES
+   =================================================== */
 
-/* Fixa o tamanho da Lupa de Busca */
-.busca-central img, .busca-central i {
-    width: 20px !important;
-    height: 20px !important;
-    max-width: 20px !important;
-}
-
-/* Fixa o tamanho do Carrinho e Instagram no Rodapé */
-.social-links img, .social-links i {
-    width: 30px !important;
-    height: 30px !important;
-    max-width: 30px !important;
-}
-
-/* Fixa o tamanho da logo para não estourar */
-.logo-principal {
-    max-width: 220px !important;
-    height: auto !important;
-}
-
-/* Garante que o texto da faixa azul fique BRANCO (estava sumindo) */
+/* Ajuste da Faixa Azul (Texto Branco) */
 .faixa-azul p {
-    color: #ffffff !important;
-    font-size: 16px !important;
+    color: #ffffff !important; 
+    font-size: 14px !important;
     font-weight: bold !important;
+    margin: 0;
 }
 
-/* Ajusta o ícone do WhatsApp que estava gigante na foto */
-.whatsapp-float img {
-    width: 35px !important;
-    height: 35px !important;
+/* Configuração da Faixa Amarela */
+.top-bar-utilitarios {
+    background-color: #ffe000 !important; /* Amarelo da Loja */
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Ajusta o Carrinho Flutuante */
-#carrinho-flutuante i, #carrinho-flutuante img {
+.container-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    max-width: 1200px;
+}
+
+/* Barra de Pesquisa Organizada */
+.busca-central {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    width: 350px;
+}
+
+.busca-central input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+}
+
+/* A MATADORA DE ZEBRA: Trava todos os ícones das faixas */
+.top-bar-utilitarios img, 
+.top-bar-utilitarios i,
+.busca-central img,
+.social-top img,
+#carrinho-topo img {
     width: 25px !important;
     height: 25px !important;
+    max-width: 25px !important;
+    min-width: 25px !important;
+    object-fit: contain !important;
+    display: inline-block !important;
+}
+
+/* Faz a Faixa Azul grudar logo abaixo da Amarela */
+.faixa-azul {
+    position: sticky;
+    top: 45px; /* Altura da amarela */
+    z-index: 1000;
 }
