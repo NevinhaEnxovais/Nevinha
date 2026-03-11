@@ -16,29 +16,6 @@
         <img src="https://i.postimg.cc/B607Fvtv/Nevinha-(2).png" alt="Logo Nevinha Enxovais" class="logo-principal">
     </header>
 
-    <div class="top-bar-utilitarios">
-        <div class="container-top-bar">
-            
-            <div class="social-top">
-                <a href="https://www.instagram.com/nevinhacamamesaebanhoe/" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-                </a>
-            </div>
-
-            <div class="busca-central">
-            <input type="text" id="inputBusca" placeholder="ENCONTRE AQUI" onkeyup="buscarProdutos()">
-            <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Lupa" onclick="buscarProdutos()">
-        </div>
-
-            <div class="carrinho-topo">
-                <a href="https://wa.me/5581998984913" class="btn-atacado-topo">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrinho">
-                </a>
-            </div>
-
-        </div>
-    </div>
-
     <div class="faixa-azul">
         <div class="conteudo-faixa">
             <div class="menu-hamburguer" onclick="toggleMenu()">
@@ -46,10 +23,14 @@
                 <span></span>
                 <span></span>
             </div>
-            <p>O MELHOR EM CAMA, MESA E BANHO PARA O SEU LAR OU NEGÓCIO</p>
+            
+            <p>O melhor em Cama, Mesa e Banho para o seu lar ou negócio</p>
+            
+            <div class="container-busca">
+                <input type="text" id="inputBusca" placeholder="Pesquisar..." onkeyup="buscarProduto()">
+            </div>
         </div>
     </div>
-
 
     <div id="menuLateral" class="menu-lateral">
         <a href="javascript:void(0)" class="btn-fechar" onclick="toggleMenu()">&times;</a>
