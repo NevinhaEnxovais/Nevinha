@@ -162,17 +162,6 @@ function filtrarPeloMenu(categoria) {
     toggleMenu();
 }
 
-function buscarProduto() {
-    const input = document.getElementById('inputBusca');
-    const termo = input.value.toLowerCase();
-    
-    const resultados = listaProdutos.filter(produto => {
-        return produto.nome.toLowerCase().includes(termo) || 
-               produto.categoria.toLowerCase().includes(termo);
-    });
-    renderizarProdutos(resultados);
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
     renderizarProdutos(); 
