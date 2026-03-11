@@ -417,3 +417,43 @@ header {
     font-weight: bold;
     color: #002366;
 }
+/* --- TRAVA DE SEGURANÇA PARA ÍCONES GIGANTES --- */
+
+/* Fixa o tamanho da Lupa de Busca */
+.busca-central img, .busca-central i {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+}
+
+/* Fixa o tamanho do Carrinho e Instagram no Rodapé */
+.social-links img, .social-links i {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+}
+
+/* Fixa o tamanho da logo para não estourar */
+.logo-principal {
+    max-width: 220px !important;
+    height: auto !important;
+}
+
+/* Garante que o texto da faixa azul fique BRANCO (estava sumindo) */
+.faixa-azul p {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+/* Ajusta o ícone do WhatsApp que estava gigante na foto */
+.whatsapp-float img {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+/* Ajusta o Carrinho Flutuante */
+#carrinho-flutuante i, #carrinho-flutuante img {
+    width: 25px !important;
+    height: 25px !important;
+}
