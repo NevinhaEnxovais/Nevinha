@@ -277,8 +277,8 @@ header {
 }
 
 .social-links a:hover {
-    color: #d4af37 !important; /* Cor dourada ao passar o mouse */
-    /* --- ESTILO DA LOCALIZAÇÃO (DADOS REAIS) --- */
+    color: #d4af37 !important; 
+}
 .localizacao-loja {
     margin-top: 40px;
     padding: 25px;
@@ -328,7 +328,6 @@ header {
 .social-links a i {
     font-size: 24px;
     color: white !important;
-}
 }
 /* ===================================================
    7. RESPONSIVIDADE (MOBILE FIRST)
