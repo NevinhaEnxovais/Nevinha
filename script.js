@@ -4,14 +4,13 @@ let total = 0;
 let currentSlide = 0;
 let autoPlayTimer;
 
-
-function renderizarProdutos() {
+function renderizarProdutos(listaParaExibir = listaProdutos) {
     const vitrine = document.querySelector('.vitrine');
     if (!vitrine) return;
     
     vitrine.innerHTML = ""; 
 
-    listaProdutos.forEach(produto => {
+    listaParaExibir.forEach(produto => {
         const cardHTML = `
             <div class="card" data-categoria="${produto.categoria}">
                 <div class="foto-produto">
@@ -46,9 +45,8 @@ function buscarProdutoNovo() {
         return produto.nome.toLowerCase().includes(termo) || 
                produto.categoria.toLowerCase().includes(termo);
     });
-    
-    // Chama a renderização passando apenas os resultados
-    renderizarProdutosFiltrados(resultados);
+    renderizarProdutos(resultados);
+
 }
 
 // 2. Nova função de renderização que aceita a lista filtrada
