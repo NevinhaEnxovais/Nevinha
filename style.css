@@ -1,54 +1,64 @@
-/* 1. ESTRUTURA E RESET */
+   1. ESTRUTURA E RESET
 body { 
     font-family: 'Montserrat', sans-serif; 
-    margin: 0; padding: 0;
-    background: #fff; color: #333; 
-    overflow-x: hidden; width: 100%;
-    /* Espaço para as barras fixas não cobrirem a logo */
-    padding-top: 110px !important; 
+    margin: 0; 
+    background: #fff; 
+    color: #333; 
+    overflow-x: hidden; 
+    width: 100%;
+    padding: 0;
 }
 
-/* 2. BARRAS FIXAS (AMARELA E AZUL) */
-.top-bar-utilitarios {
-    background-color: #ffe000 !important;
-    width: 100%; height: 55px;
-    position: fixed; top: 0; left: 0; z-index: 1001;
-    display: flex; align-items: center;
+/* Centralização Real da Logo */
+header { 
+    padding: 15px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    background: #ffffff;
 }
 
+.logo-principal { 
+    width: 220px; 
+    height: auto;
+    display: block;
+}
+
+/* ===================================================
+   2. NAVEGAÇÃO E BUSCA
+   =================================================== */
 .faixa-azul {
-    background: #0033a0 !important;
-    width: 100%; height: 45px;
-    position: fixed; top: 55px; left: 0; z-index: 1000;
-    display: flex; align-items: center;
+    background: #0033a0;
+    color: white;
+    padding: 12px 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.container-top-bar {
-    display: flex; justify-content: space-between; align-items: center;
-    width: 95%; max-width: 1200px; margin: 0 auto;
+.conteudo-faixa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* 3. BUSCA ESTILO LINHA (FOTO 2) */
-.busca-central {
-    display: flex; align-items: center;
-    background: transparent !important;
-    border-bottom: 1.5px solid #333 !important;
-    width: 45%; padding: 2px 0;
+.faixa-azul p {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0033a0; /* Forçando cor azul no texto */
 }
 
-.busca-central input {
-    background: transparent !important; border: none !important;
-    outline: none !important; font-size: 14px; width: 100%; color: #333;
-}
-
-.busca-central img { width: 18px !important; height: 18px !important; cursor: pointer; }
-
-/* 4. HEADER E LOGO */
-header { padding: 20px; display: flex; justify-content: center; background: #fff; }
-.logo-principal { width: 220px; height: auto; }
-
-/* 5. MENU LATERAL */
+/* Menu Lateral e Overlay */
 .menu-hamburguer { width: 30px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
 .menu-hamburguer span { display: block; height: 3px; width: 100%; background-color: white; border-radius: 3px; }
 
@@ -58,38 +68,436 @@ header { padding: 20px; display: flex; justify-content: center; background: #fff
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
 }
 .menu-lateral h3 { padding: 10px 32px; font-size: 18px; color: #0033a0; }
-.menu-lateral a { padding: 8px 32px; text-decoration: none; font-size: 16px; color: #333; display: block; }
-.btn-fechar { position: absolute; top: 10px; right: 25px; font-size: 36px !important; cursor: pointer; }
+.menu-lateral a { padding: 8px 32px; text-decoration: none; font-size: 16px; color: #333; display: block; transition: 0.3s; }
+.menu-lateral a:hover { background-color: #f1f1f1; }
+
+.btn-fechar { position: absolute; top: 10px; right: 25px; font-size: 36px !important; cursor: pointer; color: #333; text-decoration: none; }
+
 .overlay { display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 1999; }
 
-/* 6. VITRINE E CARDS */
-.vitrine { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
-.card { border: 1px solid #f0f0f0; border-radius: 10px; overflow: hidden; background: #fff; text-align: center; }
+/* ===================================================
+   3. VITRINE E CARDS (ALINHAMENTO TOTAL)
+   =================================================== */
+.vitrine { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; 
+    padding: 12px; 
+}
+
+.card { 
+    border: 1px solid #f0f0f0; 
+    border-radius: 10px; 
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
 .foto-produto { width: 100%; height: 200px; }
 .foto-produto img { width: 100%; height: 100%; object-fit: cover; }
-.detalhes { padding: 12px; }
-.btn-comprar { background: #0033a0; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; }
 
-/* 7. CARROSSEL E CATEGORIAS (BOLINHAS) */
+.detalhes { 
+    padding: 12px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza tudo: título, preço e botão */
+}
+/* Centraliza tudo dentro do card do produto */
+.detalhes { 
+    padding: 12px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center;   /* Centraliza o texto */
+}
+
+.detalhes h3 {
+    width: 100%;
+    margin: 0 0 8px 0;
+}
+
+.btn-comprar {
+    width: 100%; /* Faz o botão ocupar a largura toda do card */
+    display: block;
+    box-sizing: border-box; /* Garante que o padding não jogue ele pro lado */
+    margin-top: 10px;
+}
+
+.detalhes h3 { margin: 0; font-size: 13px; color: #333; height: 35px; overflow: hidden; line-height: 1.2; }
+.detalhes p { font-weight: bold; color: #0033a0; font-size: 15px; margin: 8px 0; }
+
+/* O Famoso Botão que estava no canto */
+.btn-comprar {
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    padding: 12px 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%; /* Agora ele ocupa o card todo */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background 0.3s;
+}
+.btn-comprar:hover { background-color: #d4af37; }
+
+/* ===================================================
+   4. BANNERS E CATEGORIAS
+   =================================================== */
 .carousel-container { position: relative; width: 100%; overflow: hidden; }
-.carousel-slide { display: flex; transition: transform 0.5s; }
-.carousel-slide img { width: 100%; flex-shrink: 0; }
-.secao-categorias { display: flex; overflow-x: auto; gap: 20px; padding: 20px; justify-content: flex-start; }
-.cat-item { display: flex; flex-direction: column; align-items: center; min-width: 90px; }
-.foto-circulo { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid #eee; }
-.foto-circulo img { width: 100%; height: 100%; object-fit: cover; }
+.carousel-slide { display: flex; transition: transform 0.5s ease-in-out; }
+.carousel-slide img { width: 100%; flex-shrink: 0; object-fit: cover; }
 
-/* 8. QUEM SOMOS E RODAPÉ */
-.quem-somos-footer { padding: 40px 20px; text-align: center; background: #f9f9f9; }
-.rodape-final { background: #0033a0; color: white; padding: 30px 20px; text-align: center; }
+.prev, .next {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 100;
+    background: rgba(255,255,255,0.8); color: #0033a0; border-radius: 50%;
+    width: 40px; height: 40px; border: none; cursor: pointer;
+}
+/* --- CENTRALIZAÇÃO E MANUTENÇÃO DAS BOLINHAS --- */
+.titulo-chamada {
+    text-align: center !important;
+    width: 100%;
+    margin: 40px 0 20px 0;
+    color: #0033a0;
+    font-weight: bold;
+}
 
-/* 9. BOTÕES FLUTUANTES */
-.whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 999; }
-#carrinho-flutuante { position: fixed; bottom: 90px; right: 20px; background: #0033a0; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; z-index: 999; }
+.secao-categorias { 
+    display: flex !important; 
+    justify-content: center !important; /* Centraliza no PC */
+    gap: 25px; 
+    padding: 20px; 
+    width: 100%;
+    overflow-x: auto; 
+    box-sizing: border-box;
+}
 
-/* RESPONSIVIDADE */
+.cat-item { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px; /* Garante espaço para a bolinha não esmagar */
+    cursor: pointer;
+    flex-shrink: 0;   /* Impede que o PC achate o círculo */
+}
+
+.foto-circulo { 
+    width: 100px !important;  /* Tamanho fixo da bolinha */
+    height: 100px !important; /* Tamanho fixo da bolinha */
+    border-radius: 50% !important; /* Garante que seja um círculo */
+    overflow: hidden; 
+    border: 2px solid #eee; 
+    margin-bottom: 10px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-circulo img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Faz a foto preencher o círculo sem distorcer */
+}
+
+/* Ajuste para Celular: Mantém o scroll lateral se houver muitas categorias */
 @media (max-width: 768px) {
-    .logo-principal { width: 150px; }
-    .vitrine { grid-template-columns: repeat(2, 1fr); }
-    body { padding-top: 100px !important; }
+    .secao-categorias { 
+        justify-content: flex-start !important; 
+        padding-left: 20px;
+    }
+}
+/* ===================================================
+   5. BOTÕES FLUTUANTES (FIXO E CLICÁVEL)
+   =================================================== */
+.whatsapp-float, #carrinho-flutuante {
+    position: fixed !important;
+    right: 20px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 9999 !important; /* Força ficar na frente de tudo */
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    text-decoration: none !important;
+}
+
+.whatsapp-float { bottom: 20px !important; width: 60px !important; height: 60px !important; background-color: #25d366 !important; }
+.whatsapp-float img { width: 35px; }
+
+#carrinho-flutuante { 
+    bottom: 90px !important; 
+    width: 60px !important; 
+    height: 60px !important; 
+    background-color: #0033a0 !important; 
+    color: white !important; 
+    font-size: 24px !important; 
+}
+
+#contagem-carrinho {
+    position: absolute; top: 5px; right: 5px; background: #eaff00;
+    color: #000; border-radius: 50%; padding: 2px 7px; font-size: 11px;
+    font-weight: bold; border: 1px solid #0033a0;
+}
+
+/* ===================================================
+   6. MODAL, QUEM SOMOS E RODAPÉ
+   =================================================== */
+.modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-conteudo { background: #fff; margin: 15% auto; padding: 20px; width: 85%; max-width: 400px; border-radius: 10px; }
+
+/* SEÇÃO QUEM SOMOS */
+.quem-somos-footer { background: linear-gradient(to bottom, #ffffff, #f4f7ff); padding: 60px 20px; text-align: center; border-top: 1px solid #eee; }
+.container-quem-somos { max-width: 750px; margin: 0 auto; }
+.container-quem-somos h2 { color: #0033a0; font-size: 28px; margin-bottom: 5px; }
+.linha-decorativa { width: 50px; height: 4px; background-color: #d4af37; margin: 10px auto 25px; border-radius: 2px; }
+.container-quem-somos p { font-size: 16px; line-height: 1.8; color: #444; }
+
+/* RODAPÉ */
+.rodape-final { background-color: #0033a0; color: white; padding: 40px 20px; text-align: center; }
+.container-rodape { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; max-width: 1200px; margin: 0 auto; }
+/* --- FIX DO BOTÃO INSTAGRAM --- */
+.social-links a {
+    color: white !important; /* Ou a cor que você usava */
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.localizacao-loja {
+    margin-top: 40px;
+    padding: 25px;
+    background: #fff; /* Fundo branco para destacar do azul clarinho */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: inline-block;
+    width: 90%;
+    max-width: 500px;
+}
+
+.linha-decorativa-pequena {
+    width: 30px;
+    height: 3px;
+    background-color: #d4af37;
+    margin: 0 auto 15px;
+}
+
+.localizacao-loja p {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    color: #333 !important;
+    margin-bottom: 20px !important;
+}
+
+.btn-mapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: #0033a0;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-mapa:hover {
+    background-color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Ajuste para o ícone do Instagram não sumir no rodapé */
+.social-links a i {
+    font-size: 24px;
+    color: white !important;
+}
+/* ===================================================
+   7. RESPONSIVIDADE (MOBILE FIRST)
+   =================================================== */
+@media (max-width: 768px) {
+    .logo-principal { width: 160px !important; }
+    #inputBusca { width: 110px !important; }
+    .faixa-azul p { font-size: 9px !important; }
+    
+    .vitrine { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 8px; }
+    .foto-produto { height: 160px; }
+    
+    .whatsapp-float, #carrinho-flutuante { width: 50px !important; height: 50px !important; right: 15px !important; }
+    #carrinho-flutuante { bottom: 80px !important; }
+}
+
+@media (min-width: 769px) {
+    .vitrine { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .foto-produto { height: 250px; }
+}
+/* --- SEÇÃO DE GATILHOS ESPECIALISTAS --- */
+.secao-especialista {
+    background-color: #fdfcfb;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    margin: 20px 10px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.gatilho-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.gatilho-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cursiva-titulo {
+    font-family: 'Amsterdam', cursive;
+    font-size: 1.6rem;
+    color: #2B547E;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.serifa-subtitulo {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: #002366;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.texto-dica {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid-medidas {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.tag-medida {
+    background: #fff;
+    padding: 5px 12px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #002366;
+}
+/* ===================================================
+   BARRAS FIXAS: AMARELA + AZUL (ESTILO FOTO 2)
+   =================================================== */
+
+/* Ajuste no corpo para o conteúdo não subir demais */
+body {
+    padding-top: 100px !important; 
+}
+
+/* FAIXA AMARELA FIXA */
+.top-bar-utilitarios {
+    background-color: #ffe000 !important;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* FAIXA AZUL FIXA (COLADA NA AMARELA) */
+.faixa-azul {
+    background: #0033a0 !important;
+    width: 100%;
+    height: 45px;
+    position: fixed;
+    top: 50px; /* Altura da amarela */
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* ESTILO DA BUSCA (IGUAL FOTO 2 - APENAS LINHA) */
+.busca-central {
+    display: flex;
+    align-items: center;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid #333 !important; /* A linha da foto 2 */
+    border-radius: 0 !important;
+    width: 45%; 
+    padding: 2px 0 !important;
+}
+
+.busca-central input {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 13px;
+    color: #ffffff;
+    width: 100%;
+}
+
+.busca-central img {
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer;
+}
+
+/* TRAVA DE TAMANHO PARA ÍCONES NA BARRA AMARELA */
+.container-top-bar img {
+    width: 25px !important;
+    height: 25px !important;
+    object-fit: contain;
+}
+
+.container-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Texto da faixa azul sempre branco */
+.faixa-azul p {
+    color: #ffffff !important;
+    font-size: 11px !important;
+    margin: 0;
+    text-align: center;
+    width: 100%;
 }
