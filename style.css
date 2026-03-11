@@ -155,7 +155,19 @@ header {
    =================================================== */
 .carousel-container { position: relative; width: 100%; overflow: hidden; }
 .carousel-slide { display: flex; transition: transform 0.5s ease-in-out; }
-.carousel-slide img { width: 100%; flex-shrink: 0; object-fit: cover; }
+.carousel-slide img { 
+    width: 100%; 
+    flex-shrink: 0; 
+    object-fit: cover; /* ISSO impede de achatar/esticar */
+    height: 500px;     /* Altura para Computador */
+}
+
+/* --- AJUSTE PARA CELULAR --- */
+@media (max-width: 768px) {
+    .carousel-slide img {
+        height: 300px; /* No celular ele fica mais baixinho e proporcional */
+    }
+}
 
 .prev, .next {
     position: absolute; top: 50%; transform: translateY(-50%); z-index: 100;
