@@ -4,13 +4,14 @@ let total = 0;
 let currentSlide = 0;
 let autoPlayTimer;
 
-function renderizarProdutos(listaParaExibir = listaProdutos) {
+
+function renderizarProdutos() {
     const vitrine = document.querySelector('.vitrine');
     if (!vitrine) return;
     
     vitrine.innerHTML = ""; 
 
-    listaParaExibir.forEach(produto => {
+    listaProdutos.forEach(produto => {
         const cardHTML = `
             <div class="card" data-categoria="${produto.categoria}">
                 <div class="foto-produto">
@@ -35,58 +36,6 @@ function renderizarProdutos(listaParaExibir = listaProdutos) {
     });
 }
 
-// 1. Função para filtrar os produtos
-function buscarProdutoNovo() {
-    const input = document.getElementById('inputBuscaNova');
-    const termo = input.value.toLowerCase();
-    
-    // Filtra a lista baseada no nome ou categoria
-    const resultados = listaProdutos.filter(produto => {
-        return produto.nome.toLowerCase().includes(termo) || 
-               produto.categoria.toLowerCase().includes(termo);
-    });
-    renderizarProdutos(resultados);
-
-}
-
-// 2. Nova função de renderização que aceita a lista filtrada
-function renderizarProdutosFiltrados(listaParaExibir) {
-    const vitrine = document.querySelector('.vitrine');
-    if (!vitrine) return;
-    
-    vitrine.innerHTML = ""; 
-
-    listaParaExibir.forEach(produto => {
-        const cardHTML = `
-            <div class="card" data-categoria="${produto.categoria}">
-                <div class="foto-produto">
-                    <img src="${produto.imagem}" alt="${produto.nome}">
-                </div>
-                <div class="detalhes">
-                    <h3>${produto.nome}</h3>
-                    <p style="font-size: 11px; color: #666; margin-bottom: 5px;">${produto.descricao}</p>
-                    <p>R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
-                    <div class="controle-qtd" style="display: flex; align-items: center; justify-content: center; gap: 15px; margin: 10px 0;">
-                        <button type="button" onclick="alterarQtdNoCard(this, -1)" style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; background: #f8f8f8; font-weight: bold;">-</button>
-                        <span class="qtd-numero" style="font-weight: bold; font-size: 16px;">1</span>
-                        <button type="button" onclick="alterarQtdNoCard(this, 1)" style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; background: #f8f8f8; font-weight: bold;">+</button>
-                    </div>
-                    <button class="btn-comprar" onclick="adicionarComQtd(this, '${produto.nome}', ${produto.preco})">
-                        🛒 ADICIONAR AO CARRINHO
-                    </button>
-                </div>
-            </div>
-        `;
-        vitrine.innerHTML += cardHTML;
-    });
-}
-
-// 3. Faz a busca funcionar ao apertar "Enter" no teclado
-document.getElementById('inputBuscaNova').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        buscarProdutoNovo();
-    }
-});
 
 function showSlide(index) {
     const slidesContainer = document.querySelector('.carousel-slide');
@@ -211,6 +160,17 @@ function filtrar(categoria) {
 function filtrarPeloMenu(categoria) {
     filtrar(categoria);
     toggleMenu();
+}
+
+function buscarProduto() {
+    const input = document.getElementById('inputBusca');
+    const termo = input.value.toLowerCase();
+    
+    const resultados = listaProdutos.filter(produto => {
+        return produto.nome.toLowerCase().includes(termo) || 
+               produto.categoria.toLowerCase().includes(termo);
+    });
+    renderizarProdutos(resultados);
 }
 
 
