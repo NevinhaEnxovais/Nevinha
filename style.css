@@ -13,7 +13,7 @@ body {
 
 /* Faz o conjunto (logo + azul + amarela) ficar fixo no topo */
 .header-fixo {
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -22,7 +22,7 @@ body {
 
 /* Ajuste para o conteúdo do site não subir para debaixo das barras */
 body {
-    padding-top: 180px; /* Ajuste esse valor se as barras cobrirem o banner */
+    padding-top: 180px; 
 }
 
 /* Estilo da nova faixa amarela */
