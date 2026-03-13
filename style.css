@@ -11,6 +11,86 @@ body {
     padding: 0;
 }
 
+/* Faz o conjunto (logo + azul + amarela) ficar fixo no topo */
+.header-fixo {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white; /* Para não ficar transparente */
+}
+
+/* Ajuste para o conteúdo do site não subir para debaixo das barras */
+body {
+    padding-top: 180px; /* Ajuste esse valor se as barras cobrirem o banner */
+}
+
+/* Estilo da nova faixa amarela */
+.faixa-amarela {
+    background-color: #FFDE00;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-atacado {
+    text-decoration: none;
+    color: #D1127A; /* Rosa da sua logo/imagem */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+.sacola-svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+/* --- Estilos para a Barra Amarela e Efeito de Flutuar --- */
+
+.faixa-amarela {
+    background-color: #FFDE00; /* Amarelo */
+    height: 45px; /* Altura da barra */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra bem leve */
+}
+
+.link-atacado {
+    text-decoration: none;
+    color: #FFFFFF; /* TEXTO BRANCO */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    
+    /* --- EFEITO DE FLUTUAR (O Segredo) --- */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+    padding: 5px 10px; /* Área de clique maior */
+    border-radius: 5px;
+}
+
+/* Quando passa o mouse em cima do link */
+.link-atacado:hover {
+    transform: translateY(-4px); /* Faz o botão SUBIR 4 pixels (flutuar) */
+}
+
+.icone-sacola-branca {
+    width: 20px; /* Largura do ícone */
+    height: 20px; /* Altura do ícone */
+    margin-right: 10px; /* Espaço entre a sacola e o texto */
+    display: inline-block;
+    vertical-align: middle;
+}
+
 /* Centralização Real da Logo */
 header { 
     padding: 15px; 
