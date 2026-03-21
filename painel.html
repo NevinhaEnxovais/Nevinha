@@ -142,9 +142,34 @@
     }
 
     async function confirmarVenda(aba, idProd) {
-        if(!confirm("Confirmar venda?")) return;
-        await fetch(`${URL_SCRIPT}?acao=vender&lista=${aba}&id=${idProd}`);
-        buscarLista(); 
+        const SENHA_MASTER = '1234'; 
+        
+        const senhaDigitada = prompt("Para confirmar a venda, digite a senha de vendedor:");
+
+        
+        if (senhaDigitada === null) {
+            return; // Usuário clicou em cancelar
+        }
+
+        if (senhaDigitada !== SENHA_MASTER) {
+            alert("⚠️ Senha incorreta! A venda não foi registrada.");
+            return;
+        }
+
+        
+        try {
+            const btn = event.target; // Pega o botão clicado
+            btn.innerText = "PROCESSANDO...";
+            btn.disabled = true;
+
+            await fetch(`${URL_SCRIPT}?acao=vender&lista=${aba}&id=${idProd}`);
+            
+            alert("✅ Venda registrada com sucesso na planilha!");
+            buscarLista(); 
+        } catch (e) {
+            alert("❌ Erro ao conectar com a planilha. Tente novamente.");
+            buscarLista();
+        }
     }
 </script>
 </body>
