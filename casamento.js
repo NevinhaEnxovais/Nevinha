@@ -1,4 +1,4 @@
-const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbyk7IuILoIC3AgAfv5CHzkuzx1a4__LwvpVnymd7AEOWEcMKQrk42As5RMYhCZ-VEis/exec';
+const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbx8KbQpb8DXbQaKEtifdiF-Fhgpo9zo1cQF3I9cNMyjtRdcYeHoBSPPwRU5VGublSLt/exec';
 const WHATSAPP_LOJA = "5581998984913"; 
 
 async function carregarListasDeNoivas(containerId) {
@@ -13,17 +13,13 @@ async function carregarListasDeNoivas(containerId) {
         container.innerHTML = "";
 
         for (const lista of listas) {
-            // BUSCA DETALHADA: Vamos buscar os nomes dentro da aba da noiva
             const resDetalhes = await fetch(`${URL_SCRIPT}?acao=buscar&lista=${lista.id}`);
             const dados = await resDetalhes.json();
 
-            // Pega nomes da Coluna H (índice 7) como na sua planilha
             let rawNoiva = dados[0] && dados[0][7] ? dados[0][7] : lista.noiva;
             let rawNoivo = dados[1] && dados[1][7] ? dados[1][7] : "";
             
-            // NOVIDADE: Pega a foto da célula H5 (índice 4 da linha 5 no script ou busca direta se disponível)
-            // Se o objeto 'lista' já trouxer a foto do listarAbas atualizado, usamos ela.
-            // Se não, definimos uma imagem padrão (Sua Logo).
+            
             let fotoNoivos = lista.foto && lista.foto.includes('http') 
                              ? lista.foto 
                              : "https://i.postimg.cc/B607Fvtv/Nevinha-(2).png";
