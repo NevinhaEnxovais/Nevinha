@@ -114,7 +114,7 @@
             }
             container.innerHTML = "";
             for(let i = 1; i < dados.length; i++) {
-                if(!dados[i][1] || dados[i][1].toString().trim() === "") continue; // PULA LINHA VAZIA
+                if(!dados[i][1] || dados[i][1].toString().trim() === "") continue; 
                 
                 const status = dados[i][5]; 
                 const card = document.createElement('div');
@@ -130,7 +130,18 @@
                     ${status === 'Vendido' ? '<div class="vendido-overlay"><div class="vendido-texto">VENDIDO</div></div>' : ''}`;
                 container.appendChild(card);
             }
+        } catch (e) { 
+            container.innerHTML = "Lista não encontrada."; 
+            console.error(e);
+        }
+    } // <--- ESTA CHAVE FECHA A FUNÇÃO buscarLista()
 
+    function filtrarProdutos() {
+        const termo = document.getElementById('inputFiltro').value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.display = card.getAttribute('data-nome').includes(termo) ? "block" : "none";
+        });
+    }
     function filtrarProdutos() {
         const termo = document.getElementById('inputFiltro').value.toLowerCase();
         document.querySelectorAll('.card').forEach(card => {
