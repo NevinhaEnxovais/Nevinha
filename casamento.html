@@ -22,12 +22,12 @@
 
     <script src="casamento.js"></script>
     <script>
-        // ISSO AQUI FORÇA O CARREGAMENTO
+        
         function iniciar() {
             if (typeof carregarListasDeNoivas === 'function') {
                 carregarListasDeNoivas('lista-noivos');
             } else {
-                setTimeout(iniciar, 500); // Tenta de novo se o JS não carregou ainda
+                setTimeout(iniciar, 500); 
             }
         }
         iniciar();
