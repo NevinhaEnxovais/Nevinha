@@ -78,7 +78,7 @@ async function carregarProdutosDaNoiva(containerId, tituloId) {
             const status = dados[i][5]; 
             const img = dados[i][6];    
 
-            if (status === "Disponível" && nome) {
+            if (nome && nome.toString().trim() !== "" && status === "Disponível") {
                 const textoMsg = `Olá! Quero presentear com: ${nome} (R$ ${preco}).\nDa lista de Presente de: ${nomeParaExibir}`;
                 const msgEncoded = encodeURIComponent(textoMsg);
                 
