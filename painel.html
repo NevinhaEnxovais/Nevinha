@@ -114,16 +114,22 @@
             }
             container.innerHTML = "";
             for(let i = 1; i < dados.length; i++) {
-                if(!dados[i][1]) continue;
+                if(!dados[i][1] || dados[i][1].toString().trim() === "") continue; // PULA LINHA VAZIA
+                
                 const status = dados[i][5]; 
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.setAttribute('data-nome', dados[i][1].toLowerCase());
-                card.innerHTML = `<img src="${dados[i][6] || 'https://via.placeholder.com/150'}"><div style="font-size:12px; font-weight:bold; height:32px; overflow:hidden">${dados[i][1]}</div><div class="preco-prod">R$ ${dados[i][2]}</div><button class="btn-venda" onclick="confirmarVenda('${id}', '${dados[i][0]}')" ${status === 'Vendido' ? 'disabled' : ''}>${status === 'Vendido' ? 'VENDIDO' : 'VENDER'}</button>${status === 'Vendido' ? '<div class="vendido-overlay"><div class="vendido-texto">VENDIDO</div></div>' : ''}`;
+                card.innerHTML = `
+                    <img src="${dados[i][6] || 'https://via.placeholder.com/150'}">
+                    <div style="font-size:12px; font-weight:bold; height:32px; overflow:hidden">${dados[i][1]}</div>
+                    <div class="preco-prod">R$ ${dados[i][2]}</div>
+                    <button class="btn-venda" onclick="confirmarVenda('${id}', '${dados[i][0]}')" ${status === 'Vendido' ? 'disabled' : ''}>
+                        ${status === 'Vendido' ? 'VENDIDO' : 'VENDER'}
+                    </button>
+                    ${status === 'Vendido' ? '<div class="vendido-overlay"><div class="vendido-texto">VENDIDO</div></div>' : ''}`;
                 container.appendChild(card);
             }
-        } catch (e) { container.innerHTML = "Lista não encontrada."; }
-    }
 
     function filtrarProdutos() {
         const termo = document.getElementById('inputFiltro').value.toLowerCase();
