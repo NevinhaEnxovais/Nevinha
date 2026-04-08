@@ -1,4 +1,4 @@
-const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbx8KbQpb8DXbQaKEtifdiF-Fhgpo9zo1cQF3I9cNMyjtRdcYeHoBSPPwRU5VGublSLt/exec';
+const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbzM4P_KxKQ24VUZZVtdOxkKFZxgywDq421DVk1T7yKIjM7OzKnMc3CyLxnZIUMN-JJI/exec';
 const WHATSAPP_LOJA = "5581998984913"; 
 
 async function carregarListasDeNoivas(containerId) {
