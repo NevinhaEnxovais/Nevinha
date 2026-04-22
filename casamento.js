@@ -13,21 +13,14 @@ async function carregarListasDeNoivas(containerId) {
         container.innerHTML = "";
 
         for (const lista of listas) {
-            const resDetalhes = await fetch(`${URL_SCRIPT}?acao=buscar&lista=${lista.id}`);
-            const dados = await resDetalhes.json();
-
-            let rawNoiva = dados[0] && dados[0][7] ? dados[0][7] : lista.noiva;
-            let rawNoivo = dados[1] && dados[1][7] ? dados[1][7] : "";
+            // AJUSTE AQUI: Não precisamos mais do fetch de detalhes, 
+            // pois o App Script já envia noiva, noivo e foto no 'listarAbas'
             
+            let nomeCasal = lista.noivo ? `${lista.noiva} & ${lista.noivo}` : lista.noiva;
             
             let fotoNoivos = lista.foto && lista.foto.includes('http') 
                              ? lista.foto 
                              : "https://i.postimg.cc/B607Fvtv/Nevinha-(2).png";
-
-            let nPuro = rawNoiva.replace(/Noiva:\s*/i, "").trim();
-            let oPuro = rawNoivo.replace(/Noivo:\s*/i, "").trim();
-
-            let nomeCasal = oPuro ? `${nPuro} & ${oPuro}` : nPuro;
 
             container.innerHTML += `
                 <div class="card-casal" onclick="window.location.href='vitrine-noiva.html?id=${lista.id}'" style="cursor:pointer;">
@@ -47,6 +40,7 @@ async function carregarListasDeNoivas(containerId) {
 }
 
 // --- FUNÇÃO PARA A VITRINE (vitrine-noiva.html) ---
+// Esta função permanece igual, pois ela precisa do fetch para pegar os PRODUTOS daquela noiva específica
 async function carregarProdutosDaNoiva(containerId, tituloId) {
     const params = new URLSearchParams(window.location.search);
     const idLista = params.get('id');
