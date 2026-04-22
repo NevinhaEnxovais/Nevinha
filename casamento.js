@@ -1,6 +1,7 @@
 const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbzM4P_KxKQ24VUZZVtdOxkKFZxgywDq421DVk1T7yKIjM7OzKnMc3CyLxnZIUMN-JJI/exec';
 const WHATSAPP_LOJA = "5581998984913"; 
 
+// --- FUNÇÃO PARA A PÁGINA PRINCIPAL (casamento.html) ---
 async function carregarListasDeNoivas(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -8,16 +9,21 @@ async function carregarListasDeNoivas(containerId) {
     container.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Carregando listas...</p>";
 
     try {
+        // Pede a lista ao Google (que agora já vem com noivo e foto inclusos)
         const response = await fetch(`${URL_SCRIPT}?acao=listarAbas`);
         const listas = await response.json();
         container.innerHTML = "";
 
+        if (listas.length === 0) {
+            container.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Nenhuma lista ativa no momento.</p>";
+            return;
+        }
+
         for (const lista of listas) {
-            // AJUSTE AQUI: Não precisamos mais do fetch de detalhes, 
-            // pois o App Script já envia noiva, noivo e foto no 'listarAbas'
-            
+            // Monta o nome do casal (Se não tiver noivo, mostra só a noiva)
             let nomeCasal = lista.noivo ? `${lista.noiva} & ${lista.noivo}` : lista.noiva;
             
+            // Se não tiver foto na H5 da planilha, usa a logo padrão da Nevinha
             let fotoNoivos = lista.foto && lista.foto.includes('http') 
                              ? lista.foto 
                              : "https://i.postimg.cc/B607Fvtv/Nevinha-(2).png";
@@ -27,7 +33,7 @@ async function carregarListasDeNoivas(containerId) {
                     <img src="${fotoNoivos}" alt="Noivos" style="width:100%; height:200px; object-fit:cover;">
                     <div style="padding: 15px; text-align: center;">
                         <h3 style="margin:0; color:#333; font-family: sans-serif;">${nomeCasal.toUpperCase()}</h3>
-                        <p style="color:#666; font-size:14px; margin: 10px 0;">Data: ${lista.data || '15/02/2026'}</p>
+                        <p style="color:#666; font-size:14px; margin: 10px 0;">Data: ${lista.data}</p>
                         <button class="btn-ver-lista" style="background:#003399; color:white; border:none; padding:10px; width:100%; border-radius:5px; font-weight:bold;">VER LISTA DE PRESENTES</button>
                     </div>
                 </div>
@@ -40,7 +46,6 @@ async function carregarListasDeNoivas(containerId) {
 }
 
 // --- FUNÇÃO PARA A VITRINE (vitrine-noiva.html) ---
-// Esta função permanece igual, pois ela precisa do fetch para pegar os PRODUTOS daquela noiva específica
 async function carregarProdutosDaNoiva(containerId, tituloId) {
     const params = new URLSearchParams(window.location.search);
     const idLista = params.get('id');
@@ -53,6 +58,7 @@ async function carregarProdutosDaNoiva(containerId, tituloId) {
         const res = await fetch(`${URL_SCRIPT}?acao=buscar&lista=${idLista}`);
         const dados = await res.json();
         
+        // Pega os nomes dos noivos que estão guardados na lateral da planilha (H1 e H2)
         let nNoiva = dados[0] && dados[0][7] ? dados[0][7].replace(/Noiva:\s*/i, "").trim() : "";
         let nNoivo = dados[1] && dados[1][7] ? dados[1][7].replace(/Noivo:\s*/i, "").trim() : "";
         
@@ -60,18 +66,18 @@ async function carregarProdutosDaNoiva(containerId, tituloId) {
         
         if (campoTitulo && nomeParaExibir) {
             campoTitulo.innerText = nomeParaExibir.toUpperCase();
-        } else if (campoTitulo) {
-            campoTitulo.innerText = "LISTA DE PRESENTES";
         }
 
         container.innerHTML = "";
 
+        // O loop começa em i=1 para pular o cabeçalho
         for (let i = 1; i < dados.length; i++) {
             const nome = dados[i][1];   
             const preco = dados[i][2];  
             const status = dados[i][5]; 
             const img = dados[i][6];    
 
+            // A mágica acontece aqui: o IF garante que só aparece se tiver NOME e estiver DISPONÍVEL
             if (nome && nome.toString().trim() !== "" && status === "Disponível") {
                 const textoMsg = `Olá! Quero presentear com: ${nome} (R$ ${preco}).\nDa lista de Presente de: ${nomeParaExibir}`;
                 const msgEncoded = encodeURIComponent(textoMsg);
