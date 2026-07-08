@@ -11,8 +11,12 @@
         .cabecalho-vitrine { text-align: center; padding: 30px 20px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .cabecalho-vitrine h1 { margin: 0; color: #1a5f7a; font-size: 1.6rem; }
         .grade-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        .card-produto { background: white; border-radius: 12px; padding: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
-        .card-produto img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+        
+        /* APLIQUE ESTAS ALTERAÇÕES AQUI */
+        .card-produto { background: white; border-radius: 12px; padding: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; min-height: auto; }
+        .card-produto img { display: none; }
+        /* FIM DAS ALTERAÇÕES */
+
         .preco { font-weight: bold; color: #2e7d32; font-size: 1.1rem; margin: 10px 0; }
         .btn-presentear { background: #25d366; color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold; display: block; }
         @media (min-width: 600px) { .grade-produtos { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
