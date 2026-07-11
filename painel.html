@@ -30,8 +30,17 @@
         .input-filtro { width: 100%; padding: 12px; border: 2px solid #1976d2; border-radius: 8px; box-sizing: border-box; }
 
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .card { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; position: relative; }
-        .card img { width: 100%; height: 110px; object-fit: contain; margin-bottom: 10px; }
+        .card { 
+    background: white; 
+    border-radius: 10px; 
+    padding: 20px; /* Aumentamos de 12px para 20px para ficar mais equilibrado */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+    text-align: center; 
+    position: relative; 
+}
+
+.card img { 
+    display: none;
         .preco-prod { color: #2e7d32; font-weight: bold; margin: 8px 0; font-size: 16px; }
         .btn-venda { width: 100%; background: #4caf50; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; }
         .vendido-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; border-radius: 10px; }
